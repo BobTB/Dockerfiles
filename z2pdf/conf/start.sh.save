@@ -1,0 +1,8 @@
+#!/bin/sh
+echo ${GID}
+addgroup -g ${GID} z2pdf && adduser -s /bin/sh -G z2pdf -u ${UID} z2pdf 
+chown -R $UID:$GID /opt/z-to-pdf
+#su z2pdf && 
+#exec z2pdf:z2pdf java -jar /opt/z-to-pdf/zmarkdown2pdf-0.0.1-SNAPSHOT-fat.jar -conf /opt/z-to-pdf/conf.json 
+#sudo service nginx restart
+runuser -l z2pdf -c "java -jar /opt/z-to-pdf/zmarkdown2pdf-0.0.1-SNAPSHOT-fat.jar -conf /opt/z-to-pdf/conf.json"

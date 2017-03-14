@@ -1,0 +1,56 @@
+image: gitlab/dind
+stages:
+- buildZ2pdf
+- buildNginx
+- buildphpPHPBB
+- buildphpFuelPHP
+- buildetherpad
+
+before_script:
+  - docker info
+  
+buildZ2pdf:
+  stage: buildZ2pdf
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/z2pdf:latest z2pdf/
+    - docker push registry.dryusdan.fr/dryusdan/z2pdf:latest
+    
+buildNginx:
+  stage: buildNginx
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/nginx:ipv6 nginx/
+    - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
+    
+buildphpPHPBB:
+  stage: buildphpPHPBB
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/php:phpBB php/phpBB/
+    - docker push registry.dryusdan.fr/dryusdan/php:phpBB
+    
+buildphpFuelPHP:
+  stage: buildphpFuelPHP
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/php:fuelPHP php/fuelphp/
+    - docker push registry.dryusdan.fr/dryusdan/php:fuelPHP
+    
+
+buildetherpad:
+  stage: buildetherpad
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/etherpad etherpad/
+    - docker push registry.dryusdan.fr/dryusdan/etherpad

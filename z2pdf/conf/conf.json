@@ -1,0 +1,6 @@
+{
+  "http.port" : 8082,
+  "pandoc.path": "/usr/bin/pandoc",
+  "template.path": "/opt/z-to-pdf/template.tex",
+  "api.route": "/2pdf"
+}

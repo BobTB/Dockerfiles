@@ -1,28 +1,23 @@
-FROM php:7.0-fpm
+FROM php:7.0-fpm-alpine
 MAINTAINER Dryusdan
 
-RUN  apt-get update \
-     && buildDeps=" \
+RUN buildDeps=" \
             libmemcached-dev \
-            zlib1g-dev \
-            libcurl4-openssl-dev\
+            zlib-dev \
+            openssl-dev \
+	    cyrus-sasl-dev \
+	    libmcrypt-dev \
+	    curl-dev \
      " \
-     && doNotUninstall=" \
-             libmemcached11 \
-             libmemcachedutil2 \
-             \
-     " \
-     && apt-get install -y $buildDeps libmcrypt-dev git --no-install-recommends \
-     && rm -r /var/lib/apt/lists/* \
-     \
+     && apk add -U --no-cache $buildDeps libmemcached libmcrypt curl git \
      && docker-php-source extract \
      && git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ \
-     && docker-php-ext-install memcached pdo pdo_mysql mcrypt curl opcache mbstring fileinfo zip\
-     \
+     && docker-php-ext-configure curl --with-curl \
+     && docker-php-ext-install memcached pdo pdo_mysql mcrypt curl opcache mbstring fileinfo zip \
      && docker-php-source delete \
-     && apt-mark manual $doNotUninstall \
-     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps \
-         && curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin && apt-get autoremove -y && apt-get clean all
+     && curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin \
+     && apk del $buildDeps \
+     && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
 
 COPY php.ini /usr/local/etc/php/
 EXPOSE 9000

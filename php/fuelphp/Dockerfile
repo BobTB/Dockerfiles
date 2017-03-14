@@ -5,15 +5,14 @@ RUN  apt-get update \
      && buildDeps=" \
             libmemcached-dev \
             zlib1g-dev \
-			libmcrypt-dev \
-			libcurl4-openssl-dev\
+            libcurl4-openssl-dev\
      " \
      && doNotUninstall=" \
              libmemcached11 \
              libmemcachedutil2 \
              \
      " \
-     && apt-get install -y $buildDeps git --no-install-recommends \
+     && apt-get install -y $buildDeps libmcrypt-dev git --no-install-recommends \
      && rm -r /var/lib/apt/lists/* \
      \
      && docker-php-source extract \

@@ -16,7 +16,7 @@ if [ -d "$target" ]; then
     else
         # we don't have any files, let's copy the
         # files from etc and var to the right locations
-        cp -avr /modules/* /etherpad/node_modules/
+        cp -r /modules/* /etherpad/node_modules/
     fi
 else
     # directory doesn't exist, we will have to do something here

@@ -12,7 +12,7 @@ RUN chmod +x /entrypoint.sh \
     && cd /etherpad \
     && npm i mongodb ep_mypads \
     && rm -rf /tmp/*  /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /etherpad/.git \
-	&& mkdir /modules && cd /modules && cp -avr /etherpad/node_modules/* ./
+	&& mkdir /modules && cd /modules && cp -r /etherpad/node_modules/* /modules
 
 COPY settings.json /etherpad/settings.json
 EXPOSE 9001

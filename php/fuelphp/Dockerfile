@@ -6,10 +6,10 @@ RUN buildDeps=" \
             zlib-dev \
             openssl-dev \
 	    cyrus-sasl-dev \
-	    libmcrypt-dev \
+	     \
 	    curl-dev \
      " \
-     && apk add -U --no-cache $buildDeps libmemcached libmcrypt curl git \
+     && apk add -U --no-cache $buildDeps libmemcached libmcrypt libmcrypt-dev curl git \
      && docker-php-source extract \
      && git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ \
      && docker-php-ext-configure curl --with-curl \

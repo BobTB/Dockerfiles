@@ -1,5 +1,6 @@
 image: gitlab/dind
 stages:
+- buildNetdata
 - buildZ2pdf
 - buildNginx
 - buildphpPHPBB
@@ -54,3 +55,12 @@ buildetherpad:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/etherpad etherpad/
     - docker push registry.dryusdan.fr/dryusdan/etherpad
+
+buildNetdata:
+  stage: buildnetdata
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/netdata netdata/
+    - docker push registry.dryusdan.fr/dryusdan/netdata

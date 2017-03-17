@@ -18,6 +18,7 @@ buildNetdata:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/netdata netdata/
     - docker push registry.dryusdan.fr/dryusdan/netdata
+    - docker rmi registry.dryusdan.fr/dryusdan/netdata
     
 buildZ2pdf:
   stage: buildZ2pdf
@@ -27,6 +28,7 @@ buildZ2pdf:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/z2pdf:latest z2pdf/
     - docker push registry.dryusdan.fr/dryusdan/z2pdf:latest
+    - docker rmi registry.dryusdan.fr/dryusdan/z2pdf:latest
     
 buildNginx:
   stage: buildNginx
@@ -36,6 +38,7 @@ buildNginx:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/nginx:ipv6 nginx/
     - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
+    - docker rmi registry.dryusdan.fr/dryusdan/nginx:ipv6
     
 buildphpPHPBB:
   stage: buildphpPHPBB
@@ -45,6 +48,7 @@ buildphpPHPBB:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/php:phpBB php/phpBB/
     - docker push registry.dryusdan.fr/dryusdan/php:phpBB
+    - docker rmi registry.dryusdan.fr/dryusdan/php:phpBB
     
 buildphpFuelPHP:
   stage: buildphpFuelPHP
@@ -54,6 +58,7 @@ buildphpFuelPHP:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/php:fuelPHP php/fuelphp/
     - docker push registry.dryusdan.fr/dryusdan/php:fuelPHP
+    - docker rmi registry.dryusdan.fr/dryusdan/php:fuelPHP
     
 
 buildetherpad:
@@ -64,3 +69,4 @@ buildetherpad:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/etherpad etherpad/
     - docker push registry.dryusdan.fr/dryusdan/etherpad
+    - - docker rmi registry.dryusdan.fr/dryusdan/etherpad

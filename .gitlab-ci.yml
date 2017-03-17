@@ -1,6 +1,5 @@
 image: gitlab/dind
 stages:
-- buildNetdata
 - buildZ2pdf
 - buildNginx
 - buildphpPHPBB
@@ -10,15 +9,6 @@ stages:
 before_script:
   - docker info
   
-buildNetdata:
-  stage: buildNetdata
-  tags:
-    - docker
-    - build
-  script:
-    - docker build -t registry.dryusdan.fr/dryusdan/netdata netdata/
-    - docker push registry.dryusdan.fr/dryusdan/netdata
-    - docker rmi registry.dryusdan.fr/dryusdan/netdata
     
 buildZ2pdf:
   stage: buildZ2pdf

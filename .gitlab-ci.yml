@@ -2,7 +2,6 @@ image: gitlab/dind
 stages:
 - buildZ2pdf
 - buildNginx
-- buildphpPHPBB
 - buildphpFuelPHP
 - buildetherpad
 
@@ -29,16 +28,6 @@ buildNginx:
     - docker build -t registry.dryusdan.fr/dryusdan/nginx:ipv6 nginx/
     - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
     - docker rmi registry.dryusdan.fr/dryusdan/nginx:ipv6
-    
-buildphpPHPBB:
-  stage: buildphpPHPBB
-  tags:
-    - docker
-    - build
-  script:
-    - docker build -t registry.dryusdan.fr/dryusdan/php:phpBB php/phpBB/
-    - docker push registry.dryusdan.fr/dryusdan/php:phpBB
-    - docker rmi registry.dryusdan.fr/dryusdan/php:phpBB
     
 buildphpFuelPHP:
   stage: buildphpFuelPHP

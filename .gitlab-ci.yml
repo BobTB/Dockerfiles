@@ -10,6 +10,15 @@ stages:
 before_script:
   - docker info
   
+buildNetdata:
+  stage: buildNetdata
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/netdata netdata/
+    - docker push registry.dryusdan.fr/dryusdan/netdata
+    
 buildZ2pdf:
   stage: buildZ2pdf
   tags:
@@ -55,12 +64,3 @@ buildetherpad:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/etherpad etherpad/
     - docker push registry.dryusdan.fr/dryusdan/etherpad
-
-buildNetdata:
-  stage: buildnetdata
-  tags:
-    - docker
-    - build
-  script:
-    - docker build -t registry.dryusdan.fr/dryusdan/netdata netdata/
-    - docker push registry.dryusdan.fr/dryusdan/netdata

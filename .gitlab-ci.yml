@@ -69,4 +69,4 @@ buildetherpad:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/etherpad etherpad/
     - docker push registry.dryusdan.fr/dryusdan/etherpad
-    - - docker rmi registry.dryusdan.fr/dryusdan/etherpad
+    - docker rmi registry.dryusdan.fr/dryusdan/etherpad

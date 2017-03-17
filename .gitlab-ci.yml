@@ -36,7 +36,7 @@ buildphpPHPBB:
     - docker
     - build
   script:
-    - docker rmi `docker images --filter "dangling=true" -q --no-trunc`
+    - docker rmi -f `docker images`
     - docker build -t registry.dryusdan.fr/dryusdan/php:phpBB php/phpBB/
     - docker push registry.dryusdan.fr/dryusdan/php:phpBB
     - docker rmi registry.dryusdan.fr/dryusdan/php:phpBB

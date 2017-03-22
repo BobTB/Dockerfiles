@@ -67,7 +67,3 @@ pushOnGithub:
   script:
     - echo "push on docker"
     - git push --mirror https://$GITHUB_TOKEN@github.com/Dryusdan/Dockerfiles.git
-  environment:
-    name: github
-    url : https://github.com
-

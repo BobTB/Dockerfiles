@@ -5,6 +5,7 @@ stages:
 - buildphpFuelPHP
 - buildetherpad
 - buildGrav
+- pushOnGithub
 
 before_script:
   - docker info
@@ -60,3 +61,13 @@ buildGrav:
     - docker build -t registry.dryusdan.fr/dryusdan/php:grav php/grav
     - docker push registry.dryusdan.fr/dryusdan/php:grav
     - docker rmi registry.dryusdan.fr/dryusdan/php:grav
+
+pushOnGithub:
+  stage: pushOnGithub
+  script:
+    - echo "push on docker"
+    - git push --mirror https://$GITHUB_TOKEN@github.com/Dryusdan/Dockerfiles.git
+  environment:
+    name: github
+    url : https://github.com
+

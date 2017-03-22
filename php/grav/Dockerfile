@@ -15,7 +15,7 @@ RUN apk add --no-cache --virtual .persistent-deps \
     libxml2-dev \
     zeromq
 
-RUN buildDeps=autoconf \
+RUN buildDeps="autoconf \
     cmake \
     file \
     g++ \
@@ -24,7 +24,7 @@ RUN buildDeps=autoconf \
     make \
     git \
     pkgconf \
-    re2c \
+    re2c" \
 	&& set -xe \
     && apk add --no-cache --virtual .build-deps \
         $buildDeps \
@@ -42,29 +42,39 @@ RUN buildDeps=autoconf \
         soap \
 		zip \
     && apk del .build-deps \
-    && rm -rf /tmp/* \
+    && rm -rf /tmp/*
+
+RUN buildDeps2=" libmemcached-dev \
+		g++ \
+		cyrus-sasl-dev \
+		\
+	" \
+	&& apk add -U --no-cache $buildDeps2 git libmemcached \
+	&& docker-php-source extract \
+	&& git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ \
+	&& docker-php-ext-configure memcached --disable-memcached-sasl \
+	&& docker-php-ext-install memcached \
+	&& docker-php-source delete
 
 RUN buildDeps=" \
         openssl-dev \
-	    curl-dev \
-		libmemcached-dev \
-		g++ \
-		\
-	" \
-	&& apk add -U --no-cache $buildDeps curl git libmemcached \
-	&& docker-php-source extract \
-	&& git clone --branch php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached/ \
-	&& docker-php-ext-configure curl --with-curl \
-	&& docker-php-ext-install curl opcache mbstring zip \
-	&& docker-php-source delete \
-	&& curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin \
+            curl-dev \
+                g++ \
+                \
+        " \
+        && apk add -U --no-cache $buildDeps curl libcurl \
+        && docker-php-source extract \
+	&& docker-php-ext-configure curl \
+        && docker-php-ext-install curl \
+        && docker-php-source delete \
+        && curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin
 
 RUN apk add --update --no-cache \
         freetype-dev \
         libjpeg-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
-    && docker-php-ext-install -j"$(getconf _NPROCESSORS_ONLN)" iconv mcrypt \
+    && docker-php-ext-install -j"$(getconf _NPROCESSORS_ONLN)" iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j"$(getconf _NPROCESSORS_ONLN)" gd
 

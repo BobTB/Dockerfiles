@@ -64,6 +64,8 @@ buildGrav:
 
 pushOnGithub:
   stage: pushOnGithub
+  tags:
+    - push
   script:
     - echo "push on docker"
     - git push --mirror https://$GITHUB_TOKEN@github.com/Dryusdan/Dockerfiles.git

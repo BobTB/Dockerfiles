@@ -1,4 +1,4 @@
-FROM php:7.0.17-fpm-alpine
+FROM php:7.1-fpm-alpine
 MAINTAINER Dryusdan
 
 COPY php.ini /usr/local/etc/php/

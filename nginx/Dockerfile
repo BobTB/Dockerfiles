@@ -4,7 +4,7 @@ MAINTAINER Dryusdan
 
 ENV UID=991 GID=991
 
-ARG NGINX_VERSION=1.11.12
+ARG NGINX_VERSION=1.11.13
 ARG LIBRESSL_VERSION=2.5.2
 ARG GPG_LIBRESSL="A1EB 079B 8D3E B92B 4EBD  3139 663A F51B D5E4 D8D5"
 ARG GPG_NGINX="B0F4 2533 73F8 F6F5 10D4  2178 520A 9993 A1C0 52F8"
@@ -89,7 +89,6 @@ RUN echo "@commuedge https://nl.alpinelinux.org/alpine/edge/community" >> /etc/a
     --without-http_uwsgi_module \
     --without-http_geo_module \
     --without-http_autoindex_module \
-    --without-http_map_module \
     --without-http_split_clients_module \
     --without-http_memcached_module \
     --without-http_empty_gif_module \

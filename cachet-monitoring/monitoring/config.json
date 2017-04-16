@@ -32,7 +32,6 @@
       "strict": true,
       "method": "GET",
       "component_id": 1,
-      "metric_id": 3,
       "template": {
         "investigating": {
           "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
@@ -74,6 +73,46 @@
       "method": "GET",
       "component_id": 3,
       "template": {  
+        "investigating": {
+          "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
+          "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+        },
+        "fixed": {
+          "subject": "Le service est revenu à la normal"
+        }
+      },
+      "interval": 10,
+      "timeout": 5,
+      "threshold": 80,
+      "expected_status_code": 200
+    },
+    {
+      "name": "Gitlab",
+      "target":"https://git.drycat.fr",
+      "strict": true,
+      "method": "GET",
+      "component_id": 5,
+      "template": {
+        "investigating": {
+          "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
+          "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+        },
+        "fixed": {
+          "subject": "Le service est revenu à la normal"
+        }
+      },
+      "interval": 10,
+      "timeout": 5,
+      "threshold": 80,
+      "expected_status_code": 200
+    },
+    {
+      "name": "Lufi",
+      "target":"https://files.drycat.fr",
+      "strict": true,
+      "method": "GET",
+      "component_id": 6,
+      "template": {
         "investigating": {
           "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
           "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"

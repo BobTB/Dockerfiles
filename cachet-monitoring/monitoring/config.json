@@ -1,0 +1,91 @@
+{
+  "api": {
+    "url": "https://status.drycat.fr/api/v1",
+    "token": "E0ZZuIEIuUsfBpQdw1z6",
+    "insecure": false
+  },
+  "date_format": "02/01/2006 15:04:05 MST",
+  "monitors": [
+    {
+      "name": "Blog Drycat",
+      "target":"https://www.drycat.fr",
+      "strict": true,
+      "method": "GET",
+      "component_id": 8,
+      "template": {
+        "investigating": {
+          "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
+          "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+        },
+        "fixed": {
+          "subject": "Le service est revenu à la normal"
+        }
+      },
+      "interval": 10,
+      "timeout": 5,
+      "threshold": 80,
+      "expected_status_code": 200
+    },
+    {
+      "name": "Miaou",
+      "target":"https://miaou.drycat.fr",
+      "strict": true,
+      "method": "GET",
+      "component_id": 1,
+      "metric_id": 3,
+      "template": {
+        "investigating": {
+          "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
+          "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+        },
+        "fixed": {
+          "subject": "Le service est revenu à la normal"
+        }
+      },
+      "interval": 10,
+      "timeout": 5,
+      "threshold": 80,
+      "expected_status_code": 200
+    },
+    { 
+      "name": "Lutim",
+      "target":"https://img.drycat.fr",
+      "strict": true,
+      "method": "GET",
+      "component_id": 2, 
+      "template": {  
+        "investigating": {
+          "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
+          "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+        },
+        "fixed": {
+          "subject": "Le service est revenu à la normal"
+        }
+      },
+      "interval": 10,
+      "timeout": 5,  
+      "threshold": 80,
+      "expected_status_code": 200
+    },
+    { 
+      "name": "PrivateBin",
+      "target":"https://paste.drycat.fr",
+      "strict": true,
+      "method": "GET",
+      "component_id": 3,
+      "template": {  
+        "investigating": {
+          "subject": "{{ .Monitor.Name }} - {{ .SystemName }}",
+          "message": "{{ .Monitor.Name }} check **failed** (server time: {{ .now }})\n\n{{ .FailReason }}"
+        },
+        "fixed": {
+          "subject": "Le service est revenu à la normal"
+        }
+      },
+      "interval": 10,
+      "timeout": 5,
+      "threshold": 80,
+      "expected_status_code": 200
+    }
+  ]
+}

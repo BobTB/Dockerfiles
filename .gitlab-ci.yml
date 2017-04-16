@@ -5,6 +5,7 @@ stages:
 - buildphpFuelPHP
 - buildetherpad
 - buildGrav
+- buildMonitoring
 - pushOnGithub
 
 before_script:
@@ -27,7 +28,7 @@ buildNginx:
     - docker
     - build
   script:
-    - docker build -t registry.dryusdan.fr/dryusdan/nginx:ipv6 nginx/
+    - sh nginx/builder.sh
     - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
     - docker rmi registry.dryusdan.fr/dryusdan/nginx:ipv6
     
@@ -61,6 +62,16 @@ buildGrav:
     - docker build -t registry.dryusdan.fr/dryusdan/php:grav php/grav
     - docker push registry.dryusdan.fr/dryusdan/php:grav
     - docker rmi registry.dryusdan.fr/dryusdan/php:grav
+
+buildMonitoring:
+  stage: buildMonitoring
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/cachet-monitoring cachet-monitoring
+    - docker push registry.dryusdan.fr/dryusdan/cachet-monitoring
+    - docker rmi registry.dryusdan.fr/dryusdan/cachet-monitoring
 
 pushOnGithub:
   stage: pushOnGithub

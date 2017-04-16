@@ -6,6 +6,7 @@ stages:
 - buildetherpad
 - buildGrav
 - buildMonitoring
+- buildCachethq
 - pushOnGithub
 
 before_script:
@@ -72,6 +73,16 @@ buildMonitoring:
     - docker build -t registry.dryusdan.fr/dryusdan/cachet-monitoring cachet-monitoring
     - docker push registry.dryusdan.fr/dryusdan/cachet-monitoring
     - docker rmi registry.dryusdan.fr/dryusdan/cachet-monitoring
+
+buildCachethq:
+  stage: buildCachethq
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/cachethq cachethq
+    - docker push registry.dryusdan.fr/dryusdan/cachethq
+    - docker rmi registry.dryusdan.fr/dryusdan/cachethq
 
 pushOnGithub:
   stage: pushOnGithub

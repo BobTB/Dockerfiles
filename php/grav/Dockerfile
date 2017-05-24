@@ -36,7 +36,6 @@ RUN apk add -U --no-cache --virtual .persistent-deps \
 		openssl-dev \
 		curl-dev \
 		libtool \
-		pcre \
     && docker-php-source extract \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \

@@ -1,4 +1,7 @@
 # PHP for Fuelphp
+
+[![](https://images.microbadger.com/badges/image/dryusdan/php-fuelphp.svg)](https://microbadger.com/images/dryusdan/php-fuelphp "Get your own image badge on microbadger.com")
+
 Strict minimal version of PHP based on official PHP FPM Alpine
 
 This image can run the Fuelphp with more power and more speed than a classic PHP configuration.

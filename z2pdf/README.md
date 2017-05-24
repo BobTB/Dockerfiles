@@ -1,5 +1,7 @@
 # Docker image for z2pdf 
 
+[![](https://images.microbadger.com/badges/image/dryusdan/z2pdf.svg)](https://microbadger.com/images/dryusdan/z2pdf "Get your own image badge on microbadger.com")
+
 It's a docker image for z2pdf based on alpine.
 
 ## What is z2pdf ?

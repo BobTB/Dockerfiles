@@ -1,4 +1,7 @@
 # PHP for Grav CMD
+
+[![](https://images.microbadger.com/badges/image/dryusdan/php-grav.svg)](https://microbadger.com/images/dryusdan/php-grav "Get your own image badge on microbadger.com")
+
 Strict minimal version of PHP based on official PHP FPM Alpine
 
 This image can run the Grav CMS with more power and more speed than a classic PHP configuration.

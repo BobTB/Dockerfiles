@@ -17,6 +17,7 @@ RUN apk add -U --no-cache --virtual .persistent-deps \
 		libmcrypt-dev \
 		libpng-dev \
 		imagemagick-dev \
+		pcre-dev \
     && apk add -u --no-cache --virtual .build-deps \
 		autoconf \
 		cmake \
@@ -35,6 +36,7 @@ RUN apk add -U --no-cache --virtual .persistent-deps \
 		openssl-dev \
 		curl-dev \
 		libtool \
+		pcre \
     && docker-php-source extract \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \

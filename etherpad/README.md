@@ -1,5 +1,7 @@
 # Etherpad container with alpine and MyPads
 
+[![](https://images.microbadger.com/badges/image/dryusdan/etherpad-mypad.svg)](https://microbadger.com/images/dryusdan/etherpad-mypad "Get your own image badge on microbadger.com")
+
 - Image build with Alpine 
 - Build with MyPads extentions by default
 - Etherpad not run as roo

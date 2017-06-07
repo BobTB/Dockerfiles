@@ -33,4 +33,4 @@ COPY rootfs/ /
 
 RUN chmod +x /usr/local/bin/startup
 
-VOLUME /presentator/app/web/assets /presentator/app/web/uploads
+VOLUME /presentator/app/web/assets /presentator/app/web/uploads /presentator/app/runtime /presentator/api/runtime

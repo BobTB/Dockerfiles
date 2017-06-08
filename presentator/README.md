@@ -8,7 +8,7 @@ Presentator.io is a web design presentation and collaboration platform. This ima
 
 `docker pull dryusdan/presentator.io`
 or
-`docker build -t dryusdan/presentator.io https://github.com/Dryusdan/Dockerfiles.git#:php/presentator
+`docker build -t dryusdan/presentator.io https://github.com/Dryusdan/Dockerfiles.git#:php/presentator`
 
 ## Configuration
 
@@ -36,7 +36,7 @@ or
 
 
 ### Volumes
-#### For persistance
+For persistance
 - /presentator/app/web/assets 
 - /presentator/app/web/uploads 
 - /presentator/app/runtime 

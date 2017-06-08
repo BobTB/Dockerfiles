@@ -1,6 +1,5 @@
 image: gitlab/dind
 stages:
-- buildZ2pdf
 - buildNginx
 - buildphpFuelPHP
 - buildetherpad
@@ -13,17 +12,6 @@ stages:
 before_script:
   - docker info
   
-    
-buildZ2pdf:
-  stage: buildZ2pdf
-  tags:
-    - docker
-    - build
-  script:
-    - docker build -t registry.dryusdan.fr/dryusdan/z2pdf:latest z2pdf/
-    - docker push registry.dryusdan.fr/dryusdan/z2pdf:latest
-    - docker rmi registry.dryusdan.fr/dryusdan/z2pdf:latest
-    
 buildNginx:
   stage: buildNginx
   tags:

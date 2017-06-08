@@ -17,7 +17,8 @@ ENV UID=991 \
     SMTP_HOST=smtp.exemple.tld \
     SMTP_USERNAME=no-reply@exemple.tld \
     SMTP_PASSWORD=14234 \
-    SMTP_PORT=465
+    SMTP_PORT=465 \
+    SMTP_SSL=ssl
 
 RUN apk add -U git \
 	&& curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin \

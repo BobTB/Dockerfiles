@@ -1,6 +1,6 @@
 # Presentator.io
 
-[![](https://images.microbadger.com/badges/image/dryusdan/php-fuelphp.svg)](https://microbadger.com/images/dryusdan/presentator.io "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/dryusdan/presentator.io.svg)](https://microbadger.com/images/dryusdan/presentator.io "Get your own image badge on microbadger.com")
 
 Presentator.io is a web design presentation and collaboration platform. This image is based on xataz/nginx-php
 

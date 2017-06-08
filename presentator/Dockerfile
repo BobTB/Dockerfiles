@@ -27,7 +27,8 @@ RUN apk add -U git \
 	&& composer install \
 	&& php /presentator/init --env=Production --overwrite=n \
 	&& apk del git \
-	&& rm -rf /tmp/* /var/cache/apk/* /usr/src/* 
+	&& rm -rf /tmp/* /var/cache/apk/* /usr/src/* \
+        && rm -rf /presentator/.git/
 
 COPY rootfs/ /
 

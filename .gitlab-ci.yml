@@ -1,7 +1,6 @@
 image: gitlab/dind
 stages:
 - buildZ2pdf
-- buildNginx
 - buildphpFuelPHP
 - buildetherpad
 - buildGrav
@@ -22,16 +21,6 @@ buildZ2pdf:
     - docker build -t registry.dryusdan.fr/dryusdan/z2pdf:latest z2pdf/
     - docker push registry.dryusdan.fr/dryusdan/z2pdf:latest
     - docker rmi registry.dryusdan.fr/dryusdan/z2pdf:latest
-    
-buildNginx:
-  stage: buildNginx
-  tags:
-    - docker
-    - build
-  script:
-    - sh nginx/builder.sh
-    - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
-    - docker rmi registry.dryusdan.fr/dryusdan/nginx:ipv6
     
 buildphpFuelPHP:
   stage: buildphpFuelPHP

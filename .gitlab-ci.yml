@@ -1,4 +1,4 @@
-image: gitlab/dind
+image: docker:edge
 stages:
 - buildZ2pdf
 - buildphpFuelPHP
@@ -6,11 +6,9 @@ stages:
 - buildGrav
 - buildMonitoring
 - buildPresentator
+- buildStandardfile
 - pushOnGithub
-
-before_script:
-  - docker info
-  
+ 
     
 buildZ2pdf:
   stage: buildZ2pdf
@@ -31,7 +29,6 @@ buildphpFuelPHP:
     - docker build -t registry.dryusdan.fr/dryusdan/php:fuelPHP php/fuelphp/
     - docker push registry.dryusdan.fr/dryusdan/php:fuelPHP
     - docker rmi registry.dryusdan.fr/dryusdan/php:fuelPHP
-    
 
 buildetherpad:
   stage: buildetherpad
@@ -72,6 +69,16 @@ buildPresentator:
     - docker build -t registry.dryusdan.fr/dryusdan/presentator presentator
     - docker push registry.dryusdan.fr/dryusdan/presentator
     - docker rmi registry.dryusdan.fr/dryusdan/presentator
+
+buildStandardfile:
+  stage: buildStandardfile
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/standardfile standardfile
+    - docker push registry.dryusdan.fr/dryusdan/standardfile
+    - docker rmi registry.dryusdan.fr/dryusdan/standardfile
 
 pushOnGithub:
   stage: pushOnGithub

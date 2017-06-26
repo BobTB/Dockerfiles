@@ -1,4 +1,9 @@
 image: docker:edge
+
+
+services:
+ - docker:edge-dind
+
 stages:
 - buildZ2pdf
 - buildphpFuelPHP

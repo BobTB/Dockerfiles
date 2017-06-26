@@ -1,8 +1,15 @@
-image: docker:edge
+image: docker:latest
 
 
 services:
- - docker:edge-dind
+ - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+
+before_script:
+  - docker version
+  - docker info
 
 stages:
 - buildZ2pdf

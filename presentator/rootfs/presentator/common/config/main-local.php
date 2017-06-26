@@ -22,7 +22,7 @@ return [
                 'username'   => '<SMTP_USERNAME>',
                 'password'   => '<SMTP_PASSWORD>',
                 'port'       => '<SMTP_PORT>',
-                'encryption' => 'ssl',
+                'encryption' => '<SMTP_SSL>',
             ],
         ],
     ],

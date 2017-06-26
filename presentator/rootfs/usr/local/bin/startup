@@ -21,6 +21,7 @@ sed -i -e 's/<PUBLIC_URL>/'$PUBLIC_URL'/g' \
 	   -e 's/<SMTP_USERNAME>/'$SMTP_USERNAME'/g' \
 	   -e 's|<SMTP_PASSWORD>|'$SMTP_PASSWORD'|g' \
 	   -e 's/<SMTP_PORT>/'$SMTP_PORT'/g' \
+           -e 's/<SMTP_SSL>/'$SMTP_SSL'/g' \
 	   -e 's/<API_URI>/'$API_URI'/g' /presentator/common/config/params-local.php  /nginx/sites-enabled/api.presentator.conf /presentator/common/config/main-local.php  /nginx/sites-enabled/app.presentator.conf
 
 php /presentator/yii migrate --interactive=0

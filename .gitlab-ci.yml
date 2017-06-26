@@ -1,10 +1,11 @@
-image: docker:dind
+image: docker:edge
 
 
 services:
- - docker:dind
+ - docker:edge-dind
 
 before_script:
+  - service docker start
   - docker version
   - docker info
 

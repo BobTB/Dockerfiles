@@ -4,9 +4,6 @@ image: docker:latest
 services:
  - docker:dind
 
-variables:
-  DOCKER_DRIVER: devicemapper
-
 before_script:
   - docker version
   - docker info

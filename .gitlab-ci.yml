@@ -5,7 +5,7 @@ services:
  - docker:dind
 
 variables:
-  DOCKER_DRIVER: overlay
+  DOCKER_DRIVER: devicemapper
 
 before_script:
   - docker version

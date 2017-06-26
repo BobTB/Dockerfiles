@@ -1,4 +1,4 @@
-image: docker:dind
+image: docker:latest
 
 
 services:
@@ -6,7 +6,7 @@ services:
 
 before_script:
   - DOCKER_HOST=tcp://localhost:2375
-
+  - docker info
 
 stages:
 - buildZ2pdf

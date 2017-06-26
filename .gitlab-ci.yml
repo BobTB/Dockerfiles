@@ -8,9 +8,9 @@ variables:
   DOCKER_DRIVER: overlay
 
 before_script:
+  - apt-get update
   - docker version
   - docker info
-  - apt update
 
 stages:
 - buildZ2pdf

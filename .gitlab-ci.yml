@@ -5,6 +5,7 @@ services:
  - docker:dind
 
 before_script:
+  - docker ps -a
   - docker info
 
 stages:

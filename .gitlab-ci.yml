@@ -4,11 +4,6 @@ image: docker:latest
 services:
  - docker:dind
 
-before_script:
-  - DOCKER_HOST=tcp://localhost:2375
-  - docker version
-  - docker info
-
 stages:
 - buildZ2pdf
 - buildphpFuelPHP

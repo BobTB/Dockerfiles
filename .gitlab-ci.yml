@@ -5,9 +5,7 @@ services:
  - docker:dind
 
 before_script:
-  - ping docker
-  - docker ps -a
-  - docker info
+  - top
 
 stages:
 - buildZ2pdf

@@ -12,9 +12,9 @@ stages:
 - buildphpFuelPHP
 - buildetherpad
 - buildGrav
-- buildMonitoring
 - buildPresentator
 - buildStandardfile
+- buildStandardnotes
 - pushOnGithub
  
     
@@ -58,16 +58,6 @@ buildGrav:
     - docker push registry.dryusdan.fr/dryusdan/php:grav
     - docker rmi registry.dryusdan.fr/dryusdan/php:grav
 
-buildMonitoring:
-  stage: buildMonitoring
-  tags:
-    - docker
-    - build
-  script:
-    - docker build -t registry.dryusdan.fr/dryusdan/cachet-monitoring cachet-monitoring
-    - docker push registry.dryusdan.fr/dryusdan/cachet-monitoring
-    - docker rmi registry.dryusdan.fr/dryusdan/cachet-monitoring
-
 buildPresentator:
   stage: buildPresentator
   tags:
@@ -87,6 +77,16 @@ buildStandardfile:
     - docker build -t registry.dryusdan.fr/dryusdan/standardfile standardfile
     - docker push registry.dryusdan.fr/dryusdan/standardfile
     - docker rmi registry.dryusdan.fr/dryusdan/standardfile
+
+buildStandardnotes:
+  stage: buildStandardnotes
+  tags:
+    - docker
+    - build
+  script:
+    - docker build -t registry.dryusdan.fr/dryusdan/standardnotes standardnotes
+    - docker push registry.dryusdan.fr/dryusdan/standardnotes
+    - docker rmi registry.dryusdan.fr/dryusdan/standardnotes
 
 pushOnGithub:
   stage: pushOnGithub

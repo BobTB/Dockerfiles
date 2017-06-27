@@ -5,6 +5,7 @@ services:
  - docker:dind
 
 before_script:
+  - docker -d
   - docker ps -a
   - docker info
 

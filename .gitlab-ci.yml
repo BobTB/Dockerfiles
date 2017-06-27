@@ -2,7 +2,7 @@ image: docker:latest
 
 
 services:
- - docker:dind
+ - gitlab/dind
 
 before_script:
   - docker info

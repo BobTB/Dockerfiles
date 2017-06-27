@@ -5,7 +5,7 @@ services:
  - docker:dind
 
 before_script:
-  - top
+  - docker info
 
 stages:
 - buildZ2pdf

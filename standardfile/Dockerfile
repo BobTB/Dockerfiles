@@ -14,7 +14,7 @@ RUN mkdir -p /usr/local/etc \
     zlib-dev \
     build-base \
     mariadb-dev \ 
-  && apk add ruby-io-console ruby-json ruby-bigdecimal zlib tzdata mariadb-client mariadb-libs \
+  && apk add ruby-io-console ruby-json ruby-bigdecimal zlib tzdata mariadb-client-libs \
   && gem install -N rails --version "$RAILS_VERSION" \
   && echo 'gem: --no-document' >> ~/.gemrc \
   && cp ~/.gemrc /etc/gemrc \

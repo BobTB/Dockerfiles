@@ -6,20 +6,19 @@ EXPOSE 8000
 CMD ["/sbin/entrypoint.sh"]
 
 ARG cachet_ver
-ENV cachet_ver ${cachet_ver:-master}
+ENV cachet_ver ${cachet_ver:-master} \
+ PG_MAJOR 9.5 \
+ NGINX_VERSION 1.10.1-1~jessie \
+ COMPOSER_VERSION 1.4.1
 
-ENV PG_MAJOR 9.5
-ENV NGINX_VERSION 1.10.1-1~jessie
-ENV COMPOSER_VERSION 1.4.1
-
-RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
-
-RUN echo "deb http://nginx.org/packages/debian/ jessie nginx" > /etc/apt/sources.list.d/nginx.list
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list
-
-# Using debian packages instead of compiling from scratch
-RUN DEBIAN_FRONTEND=noninteractive \
+RUN mkdir -p /var/cache/apt/archives/ /var/cache/apt/archives/partial/ \
+ && touch /var/cache/apt/archives/lock \
+ && apt-get autoremove && apt-get clean && apt-get autoclean \
+ && apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8 \
+ && apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+ && echo "deb http://nginx.org/packages/debian/ jessie nginx" > /etc/apt/sources.list.d/nginx.list \
+ && echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list \
+ && DEBIAN_FRONTEND=noninteractive \
     apt-get clean && \
     apt-get -q -y update && \
     apt-get -q -y install \
@@ -34,23 +33,16 @@ RUN DEBIAN_FRONTEND=noninteractive \
     wget sqlite libsqlite3-dev git \
     supervisor && \
     apt-get clean && apt-get autoremove -q && \
-    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
-
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
-
-RUN touch /var/run/nginx.pid /var/run/php5-fpm.pid && \
-    chown -R www-data:www-data /var/run/nginx.pid /var/run/php5-fpm.pid
-
-RUN adduser www-data sudo && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-RUN mkdir -p /var/www/html /usr/share/nginx/cache && \
-    chown -R www-data:www-data /var/www /usr/share/nginx/cache /var/cache/nginx
-
-# Install composer
-RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && \
+    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/* \
+ && ln -sf /dev/stdout /var/log/nginx/access.log \
+ && ln -sf /dev/stderr /var/log/nginx/error.log \
+ && touch /var/run/nginx.pid /var/run/php5-fpm.pid \
+ && chown -R www-data:www-data /var/run/nginx.pid /var/run/php5-fpm.pid \
+ && adduser www-data sudo \
+ && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+ && mkdir -p /var/www/html /usr/share/nginx/cache \
+ && chown -R www-data:www-data /var/www /usr/share/nginx/cache /var/cache/nginx \
+ && php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && \
     php -r "copy('https://composer.github.io/installer.sig', '/tmp/composer-setup.sig');" && \
     php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" && \
     php /tmp/composer-setup.php --version=$COMPOSER_VERSION --install-dir=bin && \

@@ -12,7 +12,6 @@ stages:
 - buildPresentator
 - buildStandardfile
 - buildStandardnotes
-- buildNginx
 - pushOnGithub
  
     
@@ -85,16 +84,6 @@ buildStandardnotes:
     - docker build -t registry.dryusdan.fr/dryusdan/standardnotes standardnotes
     - docker push registry.dryusdan.fr/dryusdan/standardnotes
     - docker rmi registry.dryusdan.fr/dryusdan/standardnotes
-
-buildNginx:
-  stage: buildNginx
-  tags:
-    - docker
-    - build
-  script:
-    - sh nginx/builder.sh
-    - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
-    - docker rmi registry.dryusdan.fr/dryusdan/nginx:ipv6
 
 pushOnGithub:
   stage: pushOnGithub

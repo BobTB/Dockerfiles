@@ -92,7 +92,7 @@ buildNginx:
     - docker
     - build
   script:
-    - sh nginx/build.sh
+    - sh nginx/builder.sh
     - docker push registry.dryusdan.fr/dryusdan/nginx:ipv6
     - docker rmi registry.dryusdan.fr/dryusdan/nginx:ipv6
 

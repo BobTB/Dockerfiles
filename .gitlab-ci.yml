@@ -88,7 +88,7 @@ buildStandardnotes:
 
 buildNginx:
   stage: buildNginx
-  tag:
+  tags:
     - docker
     - build
   script:

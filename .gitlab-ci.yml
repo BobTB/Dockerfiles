@@ -81,7 +81,6 @@ buildStandardnotes:
     - docker
     - build
   script:
-    - apk -U add git
     - docker build -t registry.dryusdan.fr/dryusdan/standardnotes standardnotes
     - docker push registry.dryusdan.fr/dryusdan/standardnotes
     - docker rmi registry.dryusdan.fr/dryusdan/standardnotes
@@ -91,5 +90,6 @@ pushOnGithub:
   tags:
     - push
   script:
+    - apk -U add git
     - echo "push on docker"
     - git push --mirror https://$GITHUB_TOKEN@github.com/Dryusdan/Dockerfiles.git

@@ -94,7 +94,7 @@ buildPeerTube:
   script:
     - docker build -t registry.dryusdan.fr/dryusdan/peertube peertube
     - docker push registry.dryusdan.fr/dryusdan/peertube
-    - dockerrmo registry.dryusdan.fr/dryusdan/peertube
+    - docker rmi registry.dryusdan.fr/dryusdan/peertube
 
 pushOnGithub:
   stage: pushOnGithub

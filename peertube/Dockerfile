@@ -9,6 +9,7 @@ ENV UID=991 GID=991 \
     DATABASE_USERNAME=peertube \
     DATABASE_PASSWORD=peertube \
     ADMIN_EMAIL=admin@domain.local \
+    SIGNUP_ENABLE=false \
     TRANSCODING_ENABLE=false \
     TRANSCODING_THREADS=2
 

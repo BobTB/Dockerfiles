@@ -2,6 +2,19 @@
 
 addgroup -g ${GID} peertube && adduser -s /bin/sh -G peertube -u ${UID} -D peertube
 
+mkdir -p /nginx /nginx/log /nginx/run /nginx/www/html
+
+chown -R peertube:peertube /nginx /etc/s6.d
+
+if [ $# -gt 0 ]; then
+    exec su-exec peertube:peertube "$@" &
+else
+    exec su-exec peertube:peertube /bin/s6-svscan /etc/s6.d &   
+fi
+
+cd /PeerTube
+addgroup -g ${GID} peertube && adduser -s /bin/sh -G peertube -u ${UID} -D peertube
+
 sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<hostname>|'${HOSTNAME}'|' \
         -e 's|<port>|'${PORT}'|' \
@@ -14,10 +27,14 @@ sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<transcoding_enable>|'${TRANSCODING_ENABLE}'|' \
         -e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' /PeerTube/config/production.yaml
 
+sed -i -e 's|<body_size>|'${BODY_SIZE}'|' /nginx/sites-enabled/peertube.conf
+
 chown -R $UID:$GID ./
 
+#npm start
+
 if [ $# -eq 0 ]; then
-    NODE_ENV=production exec su-exec peertube:peertube npm start
+   NODE_ENV=production exec su-exec peertube:peertube npm start
 else
     NODE_ENV=production exec su-exec peertube:peertube npm $#
 fi

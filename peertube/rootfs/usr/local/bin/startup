@@ -4,6 +4,7 @@ addgroup -g ${GID} peertube && adduser -s /bin/sh -G peertube -u ${UID} -D peert
 
 sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<hostname>|'${HOSTNAME}'|' \
+        -e 's|<port>|'${PORT}'|' \
         -e 's|<database_host>|'${DATABASE_HOST}'|' \
         -e 's|<database_port>|'${DATABASE_PORT}'|' \
         -e 's|<database_username>|'${DATABASE_USERNAME}'|' \

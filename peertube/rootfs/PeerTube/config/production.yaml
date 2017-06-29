@@ -34,5 +34,5 @@ signup:
 # Uses a lot of CPU!
 transcoding:
   enabled: <transcoding_enable>
-  threads: <transcoding_trheads>
+  threads: <transcoding_threads>
 

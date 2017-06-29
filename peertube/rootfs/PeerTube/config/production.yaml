@@ -3,17 +3,17 @@ listen:
 
 # Correspond to your reverse proxy "listen" configuration
 webserver:
-  https: <HTTPS>
-  hostname: '<HOSTNAME>'
-  port: <PORT>
+  https: <https>
+  hostname: '<hostname>'
+  port: <port>
 
 # Your database name will be "peertube"+database.suffix
 database:
-  hostname: '<DATABASE_HOST>'
-  port: <DATABASE_PORT>
+  hostname: '<database_host>'
+  port: <database_port>
   suffix: '_prod'
-  username: '<DATABASE_USERNAME>'
-  password: '<DATABASE_PASSWORD>'
+  username: '<database_username>'
+  password: '<database_password>'
 
 # From the project root directory
 storage:
@@ -25,14 +25,14 @@ storage:
   torrents: 'torrents/'
 
 admin:
-  email: '<ADMIN_EMAIL>'
+  email: '<admin_email>'
 
 signup:
-  enabled: <SIGNUP_ENABLED>
+  enabled: <signup_enabled>
 
 # If enabled, the video will be transcoded to mp4 (x264) with "faststart" flag
 # Uses a lot of CPU!
 transcoding:
-  enabled: <TRANSCODING_ENABLE>
-  threads: <TRANSCODING_TRHEADS>
+  enabled: <transcoding_enable>
+  threads: <transcoding_trheads>
 

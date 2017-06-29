@@ -10,7 +10,7 @@ sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<database_username>|'${DATABASE_USERNAME}'|' \
         -e 's|<database_password>|'${DATABASE_PASSWORD}'|' \
         -e 's|<admin_email>|'${ADMIN_EMAIL}'|' \
-        -e 's|<signup_enabled>|'${SIGNUP_ENABLED}'|' \
+        -e 's|<signup_enabled>|'${SIGNUP_ENABLE}'|' \
         -e 's|<transcoding_enable>|'${TRANSCODING_ENABLE}'|' \
         -e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' /PeerTube/config/production.yaml
 

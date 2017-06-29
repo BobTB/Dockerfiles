@@ -1,0 +1,24 @@
+#!/bin/sh
+
+addgroup -g ${GID} peertube && adduser -s /bin/sh -G peertube -u ${UID} -D peertube
+
+sed -i -e 's|<secret_key>|'${SECRET_KEY}'|' \
+        -e 's|<salt>|'${SALT}'|' \
+        -e 's|<mail_server>|'${MAIL_SERVER}'|' \
+        -e 's|<mail_port>|'${MAIL_PORT}'|' \
+        -e 's|<mail_username>|'${MAIL_USERNAME}'|' \
+        -e 's|<mail_password>|'${MAIL_PASSWORD}'|' \
+        -e 's|<mail_tls>|'${MAIL_TLS}'|' \
+        -e 's|<mail_ssl>|'${MAIL_SSL}'|' \
+        -e 's|<redis_url>|'${REDIS_URL}'|' \
+        -e 's|<redis_port>|'${REDIS_PORT}'|' \
+        -e 's|<mecached_server>|'${MEMCACHED_SERVER}'|' /Onyx/onyx/config.py
+chown -R $UID:$GID ./
+
+if [ $# -eq 0 ]; then
+    exec su-exec peertube:peertube NODE_ENV=production npm start
+else
+    exec su-exec peertube:peertube NODE_ENV=production npm $#
+fi
+
+

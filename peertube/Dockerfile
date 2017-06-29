@@ -58,7 +58,8 @@ ENV UID=991 GID=991 \
     ADMIN_EMAIL=admin@domain.local \
     SIGNUP_ENABLE=false \
     TRANSCODING_ENABLE=false \
-    TRANSCODING_THREADS=2
+    TRANSCODING_THREADS=2 \
+    BODY_SIZE=100M
 
 RUN apk -U upgrade \
     && apk add -t build-dependencies \

@@ -4,7 +4,7 @@ services:
  - docker:dind
 
 before_script:
-  - apk -U add git ssh
+  - apk -U add git openssh-client
   - mkdir -p /root/.ssh
   - echo $GITHUB_PRIVATE_KEY > /root/.ssh/id_rsa
   - echo $GITHUB_PUBLIC_KEY > /root/.ssh/id_rsa.pub

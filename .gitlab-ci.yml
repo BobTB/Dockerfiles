@@ -6,8 +6,10 @@ services:
 before_script:
   - apk -U add git openssh-client
   - mkdir -p /root/.ssh
-  - echo $GITHUB_PRIVATE_KEY > /root/.ssh/id_rsa
-  - echo $GITHUB_PUBLIC_KEY > /root/.ssh/id_rsa.pub
+  - echo $GITHUB_PRIVATE_KEY > ~/.ssh/id_rsa
+  - echo $GITHUB_PUBLIC_KEY > ~/.ssh/id_rsa.pub
+  - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+  - ssh-keyscan -t rsa git.drycat.fr >> ~/.ssh/known_hosts
 
 stages:
 - buildZ2pdf

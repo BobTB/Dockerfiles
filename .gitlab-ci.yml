@@ -14,7 +14,6 @@ before_script:
   - touch ~/.ssh/known_hosts
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
   - ssh-keyscan -p 2022 git.drycat.fr  >> ~/.ssh/known_hosts
-  - cat ~/.ssh/known_hosts
 
 stages:
 - buildPeerTube
@@ -101,7 +100,7 @@ buildPeerTube:
     - sh peertube/builder.sh
     - cd /
     - git clone git@github.com:Chocobozzz/PeerTube-Docker.git
-    - git clone git@git.drycat.fr:2022/Dryusdan/Dockerfiles.git
+    - git clone https://Dryusdan@git.drycat.fr/Dryusdan/Dockerfiles.git
     - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
     - cd /Peertube-Docker/
     - git add production/

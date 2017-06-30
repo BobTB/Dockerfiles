@@ -8,6 +8,7 @@ before_script:
   - mkdir -p /root/.ssh
   - echo $GITHUB_PRIVATE_KEY > ~/.ssh/id_rsa
   - echo $GITHUB_PUBLIC_KEY > ~/.ssh/id_rsa.pub
+  - touch ~/.ssh/known_hosts
   - ssh-keygen -R github.com
   - ssh-keygen -R git.drycat.fr
 

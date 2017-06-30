@@ -4,9 +4,7 @@ services:
  - docker:dind
 
 before_script:
-  - apk -U add git perl
-  - git config --global user.email "dryusdan@dryusdan.fr"
-  - git config --global user.name "Dryusdan"
+  - apk -U add git
 
 stages:
 - buildPeerTube

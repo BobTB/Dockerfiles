@@ -8,7 +8,7 @@ before_script:
   - mkdir -p /root/.ssh
   - touch ~/.ssh/id_rsa
   - touch ~/.ssh/id_rsa.pub
-  - echo base64 -d $GITHUB_PRIVATE_KEY
+  - base64 -d echo $GITHUB_PRIVATE_KEY
   - echo base64 -d $GITHUB_PRIVATE_KEY > ~/.ssh/id_rsa 
   - chmod 600 ~/.ssh/id_rsa
   - touch ~/.ssh/known_hosts

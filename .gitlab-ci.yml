@@ -14,7 +14,7 @@ before_script:
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 stages:
-- buildPeertube
+- buildPeerTube
 - buildZ2pdf
 - buildphpFuelPHP
 - buildetherpad

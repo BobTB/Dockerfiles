@@ -91,14 +91,6 @@ buildPeerTube:
     - build
   script:
     - sh peertube/builder.sh
-    - cd /
-    - git clone https://github.com/Chocobozzz/PeerTube-Docker.git
-    - git clone https://Dryusdan@git.drycat.fr/Dryusdan/Dockerfiles.git
-    - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
-    - cd /PeerTube-Docker/
-    - git add production/
-    - git commit -m "update production's Dockerfile"
-    - git request-pull origin/master origin/master
 
 pushOnGithub:
   stage: pushOnGithub

@@ -13,9 +13,19 @@ stages:
 - buildStandardfile
 - buildStandardnotes
 - buildPeerTube
+- buildReverseNginx
 - pushOnGithub
  
-    
+buildReverseNginx:
+  stage: buildReverseNginx
+  tags:
+    - docker
+    - build
+  script:
+    - sh nginx/builder.sh
+    - docker push registry.dryusdan.fr/dryusdan/reverse-nginx:latest
+    - docker rmi registry.dryusdan.fr/dryusdan/reverse-nginx:latest    
+
 buildZ2pdf:
   stage: buildZ2pdf
   tags:

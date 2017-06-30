@@ -97,8 +97,8 @@ buildPeerTube:
     - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
     - cd /PeerTube-Docker/
     - git add production/
-    - git commit -m "update production"
-    - git request-pull "update production Dockerfile" https://github.com/Chocobozzz/PeerTube-Docker master:master
+    - git commit -m "update production's Dockerfile"
+    - git request-pull https://github.com/Chocobozzz/PeerTube-Docker master:master
 
 pushOnGithub:
   stage: pushOnGithub

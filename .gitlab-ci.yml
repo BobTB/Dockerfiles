@@ -8,10 +8,13 @@ before_script:
   - mkdir -p /root/.ssh
   - echo $GITHUB_PRIVATE_KEY > ~/.ssh/id_rsa
   - echo $GITHUB_PUBLIC_KEY > ~/.ssh/id_rsa.pub
+  - echo $GITHUB_PUBLIC_KEY
+  - cat ~/.ssh/id_rsa.pub
   - touch ~/.ssh/known_hosts
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 stages:
+- buildPeertube
 - buildZ2pdf
 - buildphpFuelPHP
 - buildetherpad
@@ -19,7 +22,6 @@ stages:
 - buildPresentator
 - buildStandardfile
 - buildStandardnotes
-- buildPeerTube
 - buildReverseNginx
 - pushOnGithub
  

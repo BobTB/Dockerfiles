@@ -4,16 +4,7 @@ services:
  - docker:dind
 
 before_script:
-  - apk -U add git openssh-client
-  - mkdir -p /root/.ssh
-  - eval $(ssh-agent -s)
-  - touch ~/.ssh/id_rsa
-  - echo $GITHUB_PRIVATE_KEY | base64 -d | ssh-add -
-  - cat ~/.ssh/id_rsa 
-  - chmod 600 ~/.ssh/id_rsa
-  - touch ~/.ssh/known_hosts
-  - ssh-keyscan github.com >> ~/.ssh/known_hosts
-  - ssh-keyscan -p 2022 git.drycat.fr  >> ~/.ssh/known_hosts
+  - apk -U add git
   - git config --global user.email "dryusdan@dryusdan.fr"
   - git config --global user.name "Dryusdan"
 
@@ -101,13 +92,13 @@ buildPeerTube:
   script:
     - sh peertube/builder.sh
     - cd /
-    - git clone git@github.com:Chocobozzz/PeerTube-Docker.git
+    - git clone https://github.com/Chocobozzz/PeerTube-Docker.git
     - git clone https://Dryusdan@git.drycat.fr/Dryusdan/Dockerfiles.git
     - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
     - cd /PeerTube-Docker/
     - git add production/
     - git commit -m "update production"
-    - git request-pull it@github.com:Chocobozzz/PeerTube-Docker
+    - git request-pull https://github.com/Chocobozzz/PeerTube-Docker
 
 pushOnGithub:
   stage: pushOnGithub

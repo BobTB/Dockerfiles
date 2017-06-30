@@ -4,6 +4,12 @@ image: docker:edge
 services:
  - docker:dind
 
+before_script:
+  - apk -U add git
+  - mkdir -p /root/.ssh
+  - echo $GITHUB_PRIVATE_KEY > /root/.ssh/id_rsa
+  - echo $GITHUB_PUBLIC_KEY > /root/.ssh/id_rsa.pub
+
 stages:
 - buildZ2pdf
 - buildphpFuelPHP
@@ -22,7 +28,6 @@ buildReverseNginx:
     - docker
     - build
   script:
-    - apk -U add git
     - sh nginx/builder.sh
     - docker push registry.dryusdan.fr/dryusdan/reverse-nginx:latest
     - docker rmi registry.dryusdan.fr/dryusdan/reverse-nginx:latest    
@@ -106,12 +111,19 @@ buildPeerTube:
     - docker build -t registry.dryusdan.fr/dryusdan/peertube peertube
     - docker push registry.dryusdan.fr/dryusdan/peertube
     - docker rmi registry.dryusdan.fr/dryusdan/peertube
+    - cd /
+    - git clone git@github.com:Chocobozzz/PeerTube-Docker.git
+    - git clone ssh://git@git.drycat.fr:2022/Dryusdan/Dockerfiles.git
+    - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
+    - cd /Peertube-Docker/
+    - git add production/
+    - git commit -m "update production"
+    - git push
 
 pushOnGithub:
   stage: pushOnGithub
   tags:
     - push
   script:
-    - apk -U add git
     - echo "push on docker"
     - git push --mirror https://$GITHUB_TOKEN@github.com/Dryusdan/Dockerfiles.git

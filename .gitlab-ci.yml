@@ -107,7 +107,7 @@ buildPeerTube:
     - cd /PeerTube-Docker/
     - git add production/
     - git commit -m "update production"
-    - git push
+    - git request-pull v1.0 git@github.com:Chocobozzz/PeerTube-Docker
 
 pushOnGithub:
   stage: pushOnGithub

@@ -101,9 +101,8 @@ buildPeerTube:
     - cd /
     - git clone git@github.com:Chocobozzz/PeerTube-Docker.git
     - git clone https://Dryusdan@git.drycat.fr/Dryusdan/Dockerfiles.git
-    - ls
     - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
-    - cd /Peertube-Docker/
+    - cd /PeerTube-Docker/
     - git add production/
     - git commit -m "update production"
     - git push

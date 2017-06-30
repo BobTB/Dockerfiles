@@ -4,7 +4,7 @@ services:
  - docker:dind
 
 before_script:
-  - apk -U add git
+  - apk -U add git ssh
   - mkdir -p /root/.ssh
   - echo $GITHUB_PRIVATE_KEY > /root/.ssh/id_rsa
   - echo $GITHUB_PUBLIC_KEY > /root/.ssh/id_rsa.pub
@@ -94,7 +94,7 @@ buildPeerTube:
     - sh peertube/builder.sh
     - cd /
     - git clone git@github.com:Chocobozzz/PeerTube-Docker.git
-    - git clone ssh://git@git.drycat.fr:2022/Dryusdan/Dockerfiles.git
+    - git clone git@git.drycat.fr:2022/Dryusdan/Dockerfiles.git
     - cp -R /Dockerfiles/peertube /PeerTube-Docker/production
     - cd /Peertube-Docker/
     - git add production/

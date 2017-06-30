@@ -22,6 +22,7 @@ buildReverseNginx:
     - docker
     - build
   script:
+    - apk -U add git
     - sh nginx/builder.sh
     - docker push registry.dryusdan.fr/dryusdan/reverse-nginx:latest
     - docker rmi registry.dryusdan.fr/dryusdan/reverse-nginx:latest    

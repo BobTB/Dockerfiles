@@ -6,9 +6,10 @@ services:
 before_script:
   - apk -U add git openssh-client
   - mkdir -p /root/.ssh
+  - eval $(ssh-agent -s)
   - touch ~/.ssh/id_rsa
   - touch ~/.ssh/id_rsa.pub
-  - echo $GITHUB_PRIVATE_KEY | base64 -d > ~/.ssh/id_rsa
+  - echo $GITHUB_PRIVATE_KEY | base64 -d | ssh-add -
   - cat ~/.ssh/id_rsa 
   - chmod 600 ~/.ssh/id_rsa
   - touch ~/.ssh/known_hosts

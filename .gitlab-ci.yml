@@ -8,11 +8,8 @@ before_script:
   - mkdir -p /root/.ssh
   - touch ~/.ssh/id_rsa
   - touch ~/.ssh/id_rsa.pub
-  - echo $GITHUB_PRIVATE_KEY > ~/.ssh/id_rsa
-  - echo $GITHUB_PUBLIC_KEY > ~/.ssh/id_rsa.pub
-  - chmod 600 ~/.ssh/id_rsa.pub
+  - echo $GITHUB_PRIVATE_KEY > ~/.ssh/id_rsa | base64 -d | ssh-add -
   - chmod 600 ~/.ssh/id_rsa
-  - ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
   - touch ~/.ssh/known_hosts
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
 

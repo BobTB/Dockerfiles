@@ -43,6 +43,7 @@ RUN mkdir /sites-enabled \
     && make -j$(getconf _NPROCESSORS_ONLN) \
     && make install \
     && apk del .build-deps \
+    && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ \
     && cd .. \
     && rm -Rf "node-v$NODE_VERSION" \
     && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt

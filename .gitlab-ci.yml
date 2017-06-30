@@ -98,6 +98,8 @@ buildPeerTube:
     - cd /PeerTube-Docker/
     - git add production/
     - git commit -m "update production's Dockerfile"
+    - git log -n 1 --pretty=format:%H
+    - git log -n 1 --pretty=format:%H production
     - git request-pull HEAD https://github.com/Chocobozzz/PeerTube-Docker master:master
 
 pushOnGithub:

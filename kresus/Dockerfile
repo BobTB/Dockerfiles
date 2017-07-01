@@ -3,7 +3,6 @@ FROM node:6-alpine
 ARG KRESUS_VERSION=master
 ENV UID=991 GID=991 \
     KRESUS_DIR=/kresus/data \
-    PYTHON_EGG_CACHE=/kresus/.cache/ \
     HOST=0.0.0.0
 
 COPY rootfs /
@@ -58,6 +57,7 @@ RUN apk -U upgrade \
     && mkdir .cache \
     && npm install --production \
     && chmod +x /usr/local/bin/startup \
+    && ln -s /kresus/ /home/kresus \
     && apk del build-dependencies \
     && rm -rf /kresus-scripts /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ 
 

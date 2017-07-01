@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 
 COMMIT_ID=$(git log -n 1 --pretty=format:%H -- kresus/)
 LAST_COMMIT_ID=$(git log -n 1 --pretty=format:%H --)

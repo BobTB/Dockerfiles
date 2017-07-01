@@ -16,6 +16,7 @@ stages:
 - buildStandardfile
 - buildStandardnotes
 - buildReverseNginx
+- buildKresus
 - pushOnGithub
  
 buildReverseNginx:
@@ -25,6 +26,15 @@ buildReverseNginx:
     - build
   script:
     - sh nginx/builder.sh   
+
+buildKresus:
+  stage: buildKresus
+  tags:
+    - docker
+    - build 
+  script:  
+    - sh kresus/builder.sh
+
 
 buildZ2pdf:
   stage: buildZ2pdf

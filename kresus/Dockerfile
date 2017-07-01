@@ -22,6 +22,13 @@ RUN apk -U upgrade \
        jpeg-dev \
        zlib-dev \
     && apk add python \
+       libffi \
+       libxml2 \
+       libxslt \
+       yaml \
+       tiff \
+       jpeg \
+       zlib \
        wget \
        su-exec \
        bash \

@@ -105,5 +105,16 @@ pushOnGithub:
   tags:
     - push
   script:
-    - echo "push on docker"
-    - git push --mirror https://$GITHUB_TOKEN@github.com/Dryusdan/Dockerfiles.git
+    - apk add openssh-client
+    - git config --global user.email "dryusdan@dryusdan.fr"
+    - git config --global user.name "Dryusdan"
+    - mkdir -p /root/.ssh
+    - eval $(ssh-agent -s)
+    - touch ~/.ssh/id_rsa
+    - echo $GITHUB_PRIVATE_KEY | base64 -d | ssh-add -
+    - cat ~/.ssh/id_rsa 
+    - chmod 600 ~/.ssh/id_rsa
+    - touch ~/.ssh/known_hosts
+    - ssh-keyscan github.com >> ~/.ssh/known_hosts
+    - echo "push on github"
+    - git push --mirror git@github.com:Dryusdan/Dockerfiles.git

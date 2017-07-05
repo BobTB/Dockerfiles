@@ -41,7 +41,7 @@
 	// multiple users and authentication. Enabling this assumes you have
 	// your tt-rss directory protected by other means (e.g. http auth).
 
-	define('SIMPLE_UPDATE_MODE', false);
+	define('SIMPLE_UPDATE_MODE', <SIMPLE_UPDATE_MODE>);
 	// Enables fallback update mode where tt-rss tries to update feeds in
 	// background while tt-rss is open in your browser. 
 	// If you don't have a lot of feeds and don't want to or can't run 
@@ -80,11 +80,11 @@
 
 	// Please see PLUGINS below to configure various authentication modules.
 
-	define('AUTH_AUTO_CREATE', true);
+	define('AUTH_AUTO_CREATE', <AUTH_AUTO_CREATE>);
 	// Allow authentication modules to auto-create users in tt-rss internal
 	// database when authenticated successfully.
 
-	define('AUTH_AUTO_LOGIN', true);
+	define('AUTH_AUTO_LOGIN', <AUTH_AUTO_LOGIN>);
 	// Automatically login user on remote or other kind of externally supplied
 	// authentication, otherwise redirect to login form as normal.
 	// If set to true, users won't be able to set application language
@@ -94,7 +94,7 @@
 	// *** Feed settings ***
 	// *********************
 
-	define('FORCE_ARTICLE_PURGE', 0);
+	define('FORCE_ARTICLE_PURGE', <FORCE_ARTICLE_PURGE>);
 	// When this option is not 0, users ability to control feed purging
 	// intervals is disabled and all articles (which are not starred) 
 	// older than this amount of days are purged.
@@ -103,10 +103,10 @@
 	// *** Sphinx search plugin ***
 	// ****************************
 
-	define('SPHINX_SERVER', 'localhost:9312');
+	define('SPHINX_SERVER', '<SPHINX_SERVER>');
 	// Hostname:port combination for the Sphinx server.
 
-	define('SPHINX_INDEX', 'ttrss, delta');
+	define('SPHINX_INDEX', '<SPHINX_INDEX>');
 	// Index name in Sphinx configuration. You can specify multiple indexes
 	// as a comma-separated string.
 	// Example configuration files are available on tt-rss wiki.
@@ -115,16 +115,16 @@
 	// *** Self-registrations by users ***
 	// ***********************************
 
-	define('ENABLE_REGISTRATION', false);
+	define('ENABLE_REGISTRATION', <ENABLE_REGISTRATION>);
 	// Allow users to register themselves. Please be aware that allowing
 	// random people to access your tt-rss installation is a security risk
 	// and potentially might lead to data loss or server exploit. Disabled
 	// by default.
 
-	define('REG_NOTIFY_ADDRESS', 'user@your.domain.dom');
+	define('REG_NOTIFY_ADDRESS', '<REG_NOTIFY_ADDRESS>');
 	// Email address to send new user notifications to.
 
-	define('REG_MAX_USERS', 10);
+	define('REG_MAX_USERS', <REG_MAX_USERS>);
 	// Maximum amount of users which will be allowed to register on this
 	// system. 0 - no limit.
 
@@ -132,7 +132,7 @@
 	// *** Cookies and login sessions ***
 	// **********************************
 	
-	define('SESSION_COOKIE_LIFETIME', 86400);
+	define('SESSION_COOKIE_LIFETIME', <SESSION_COOKIE_LIFETIME>);
 	// Default lifetime of a session (e.g. login) cookie. In seconds, 
 	// 0 means cookie will be deleted when browser closes.
 
@@ -140,24 +140,24 @@
 	// *** Email and digest settings ***
 	// *********************************
 
-	define('SMTP_FROM_NAME', 'Tiny Tiny RSS');
-	define('SMTP_FROM_ADDRESS', 'noreply@your.domain.dom');
+	define('SMTP_FROM_NAME', '<SMTP_FROM_NAME>');
+	define('SMTP_FROM_ADDRESS', '<SMTP_FROM_ADDRESS>');
 	// Name, address and subject for sending outgoing mail. This applies
 	// to password reset notifications, digest emails and any other mail.
 
-	define('DIGEST_SUBJECT', '[tt-rss] New headlines for last 24 hours');
+	define('DIGEST_SUBJECT', '<DIGEST_SUBJECT>');
 	// Subject line for email digests
 
-	define('SMTP_SERVER', '');
+	define('SMTP_SERVER', '<SMTP_SERVER>');
 	// Hostname:port combination to send outgoing mail (i.e. localhost:25). 
 	// Blank - use system MTA.
 	
-	define('SMTP_LOGIN', '');
-	define('SMTP_PASSWORD', '');
+	define('SMTP_LOGIN', '<SMTP_LOGIN>');
+	define('SMTP_PASSWORD', '<SMTP_PASSWORD>');
 	// These two options enable SMTP authentication when sending
 	// outgoing mail. Only used with SMTP_SERVER.
 
-	define('SMTP_SECURE', '');
+	define('SMTP_SECURE', '<SMTP_SECURE>');
 	// Used to select a secure SMTP connection. Allowed values: ssl, tls,
 	// or empty.
 	
@@ -165,17 +165,17 @@
 	// *** Other settings (less important) ***
 	// ***************************************
 
-	define('CHECK_FOR_UPDATES', true);
+	define('CHECK_FOR_UPDATES', <CHECK_FOR_UPDATES>);
 	// Check for updates automatically if running Git version
  
-	define('ENABLE_GZIP_OUTPUT', false);
+	define('ENABLE_GZIP_OUTPUT', <ENABLE_GZIP_OUTPUT>);
 	// Selectively gzip output to improve wire performance. This requires
 	// PHP Zlib extension on the server.
 	// Enabling this can break tt-rss in several httpd/php configurations,
 	// if you experience weird errors and tt-rss failing to start, blank pages
 	// after login, or content encoding errors, disable it.
 
-	define('PLUGINS', 'auth_internal, note');
+	define('PLUGINS', '<PLUGINS>');
 	// Comma-separated list of plugins to load automatically for all users.
 	// System plugins have to be specified here. Please enable at least one
 	// authentication plugin here (auth_*).
@@ -184,13 +184,13 @@
 	// Disabling auth_internal in this list would automatically disable
 	// reset password link on the login form.
 	
-	define('LOG_DESTINATION', 'sql');
+	define('LOG_DESTINATION', '<LOG_DESTINATION>');
 	// Log destination to use. Possible values: sql (uses internal logging
 	// you can read in Preferences -> System), syslog - logs to system log.
 	// Setting this to blank uses PHP logging (usually to http server 
 	// error.log).
 
-	define('CONFIG_VERSION', 26);
+	define('CONFIG_VERSION', <CONFIG_VERSION>);
 	// Expected config version. Please update this option in config.php
 	// if necessary (after migrating all new options from this file).
 

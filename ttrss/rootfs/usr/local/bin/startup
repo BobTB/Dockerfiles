@@ -12,7 +12,7 @@ sed -i -e 's/<DB_TYPE>/'$DB_TYPE'/g' \
 	-e 's/<DB_PORT>/'$DB_PORT/g' \
 	-e 's/<URL>/'$URL/g' \
 	-e 's/<SINGLE_USER_MODE>/'$SINGLE_USER_MODE/g' \
-	-e 's/<SIMPLE_UPDATE_MODE>/'$ SIMPLE_UPDATE_MODE/g' \
+	-e 's/<SIMPLE_UPDATE_MODE>/'$SIMPLE_UPDATE_MODE/g' \
 	-e 's/<AUTH_AUTO_CREATE>/'$AUTH_AUTO_CREATE/g' \
 	-e 's/<AUTH_AUTO_LOGIN>/'$AUTH_AUTO_LOGIN/g' \
 	-e 's/<FORCE_ARTICLE_PURGE>/'$FORCE_ARTICLE_PURGE/g' \
@@ -37,7 +37,7 @@ sed -i -e 's/<DB_TYPE>/'$DB_TYPE'/g' \
 
 mkdir -p /nginx /php
 
-chown -R web:web /nginx /php /shaarli/data /etc/s6.d
+chown -R web:web /nginx /php /etc/s6.d
 chmod +x /etc/s6.d/*/run /etc/s6.d/.s6-svscan/finish
 
 if [ '$@' == '' ]; then

@@ -33,7 +33,7 @@ sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g'\
 	-e 's/<ENABLE_GZIP_OUTPUT>/'${ENABLE_GZIP_OUTPUT}'/g'\
 	-e 's/<PLUGINS>/'"${PLUGINS}"'/g'\
 	-e 's/<LOG_DESTINATION>/'${LOG_DESTINATION}'/g'\
-	-e 's/<CONFIG_VERSION>/'${CONFIG_VERSION}'/g' \
+	-e 's/<CONFIG_VERSION>/'${CONFIG_VERSION}'/g' /tt-rss/config.php
 
 mkdir -p /nginx /php
 

@@ -1,0 +1,41 @@
+Sending build context to Docker daemon  3.072kB
+Error response from daemon: Dockerfile parse error line 7: Unknown instruction: GCC
+Sending build context to Docker daemon  3.584kB
+Error response from daemon: Dockerfile parse error line 7: Unknown instruction: G++
+Sending build context to Docker daemon  3.584kB
+Error response from daemon: Dockerfile parse error line 26: Unknown instruction: &&
+Sending build context to Docker daemon  3.584kB
+Step 1/3 : FROM alpine/3.6
+repository alpine/3.6 not found: does not exist or no pull access
+Sending build context to Docker daemon  4.096kB
+Step 1/3 : FROM alpine:3.6
+3.6: Pulling from library/alpine
+88286f41530e: Already exists
+Digest: sha256:1072e499f3f655a032e88542330cf75b02e7bdf673278f701d7ba61629ee3ebe
+Status: Downloaded newer image for alpine:3.6
+ ---> 7328f6f8b418
+Step 2/3 : ARG RETHINKDB_VERSION=2.3.5
+ ---> Running in 97da8247d028
+ ---> fd041dd46b3e
+Sending build context to Docker daemon  4.096kB
+Step 1/3 : FROM alpine:3.6
+ ---> 7328f6f8b418
+Step 2/3 : ARG RETHINKDB_VERSION=2.3.5
+ ---> Using cache
+ ---> fd041dd46b3e
+Step 3/3 : RUN apk -U update     && apk -U add -ti build-deps        build-base        gnupg        tar        automake        autoconf        binutils     && apk -U add libcurl        libressl        python        boost        ncurses        jemalloc        protobuf        wget     && cd /tmp     && wget https://download.rethinkdb.com/dist/rethinkdb-$RETHINKDB_VERSION.tgz     && tar xf rethinkdb-$RETHINKDB_VERSION.tgz     && cd rethinkdb-$RETHINKDB_VERSION     && ./configure --allow-fetch     && make
+ ---> Running in 088dd34d009d
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz
+v3.6.2-10-g9e4a449bfc [http://dl-cdn.alpinelinux.org/alpine/v3.6/main]
+v3.6.1-61-gc32140e9a2 [http://dl-cdn.alpinelinux.org/alpine/v3.6/community]
+OK: 8429 distinct packages available
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz
+[91mERROR: unsatisfiable constraints:
+[0m  i-0:
+    masked in: cache
+    satisfies: world[i]
+  build-deps (missing):
+    required by:
+The command '/bin/sh -c apk -U update     && apk -U add -ti build-deps        build-base        gnupg        tar        automake        autoconf        binutils     && apk -U add libcurl        libressl        python        boost        ncurses        jemalloc        protobuf        wget     && cd /tmp     && wget https://download.rethinkdb.com/dist/rethinkdb-$RETHINKDB_VERSION.tgz     && tar xf rethinkdb-$RETHINKDB_VERSION.tgz     && cd rethinkdb-$RETHINKDB_VERSION     && ./configure --allow-fetch     && make' returned a non-zero code: 2

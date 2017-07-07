@@ -22,7 +22,7 @@ sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g' \
 	-e 's/<REG_NOTIFY_ADDRESS>/'${REG_NOTIFY_ADDRESS}'/g' \
 	-e 's/<REG_MAX_USERS>/'${REG_MAX_USERS}'/g' \
 	-e 's/<SESSION_COOKIE_LIFETIME>/'${SESSION_COOKIE_LIFETIME}'/g' \
-	-e 's/<SMTP_FROM_NAME>/'${SMTP_FROM_NAME}'/g' \
+	-e 's/<SMTP_FROM_NAME>/'"${SMTP_FROM_NAME}"'/g' \
 	-e 's/<SMTP_FROM_ADDRESS>/'"${SMTP_FROM_ADDRESS}"'/g' \
 	-e 's/<DIGEST_SUBJECT>/'"${DIGEST_SUBJECT}"'/g' \
 	-e 's/<SMTP_SERVER>/'${SMTP_SERVER}'/g' \

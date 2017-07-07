@@ -31,7 +31,7 @@ sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g'\
 	-e 's/<SMTP_SECURE>/'"${SMTP_SECURE}"'/g'\
 	-e 's/<CHECK_FOR_UPDATES>/'${CHECK_FOR_UPDATES}'/g'\
 	-e 's/<ENABLE_GZIP_OUTPUT>/'${ENABLE_GZIP_OUTPUT}'/g'\
-	-e 's/<PLUGINS>/'"${PLUGINS}"'/g'\
+	-e 's/<PLUGINS>/'${PLUGINS}'/g'\
 	-e 's/<LOG_DESTINATION>/'${LOG_DESTINATION}'/g'\
 	-e 's/<CONFIG_VERSION>/'${CONFIG_VERSION}'/g' /tt-rss/config.php
 

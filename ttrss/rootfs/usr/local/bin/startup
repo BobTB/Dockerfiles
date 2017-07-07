@@ -10,7 +10,7 @@ sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g' \
 	-e 's/<DB_NAME>/'${DB_NAME}'/g' \
 	-e 's/<DB_PASS>/'${DB_PASS}'/g' \
 	-e 's/<DB_PORT>/'${DB_PORT}'/g' \
-	-e 's#<URL>#'"${URL}"'#g' \
+	-e 's/<URL>/'"${URL}"'/g' \
 	-e 's/<SINGLE_USER_MODE>/'${SINGLE_USER_MODE}'/g' \
 	-e 's/<SIMPLE_UPDATE_MODE>/'${SIMPLE_UPDATE_MODE}'/g' \
 	-e 's/<AUTH_AUTO_CREATE>/'${AUTH_AUTO_CREATE}'/g' \

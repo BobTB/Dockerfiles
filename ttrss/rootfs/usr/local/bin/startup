@@ -27,7 +27,7 @@ sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g' \
 	-e 's/<DIGEST_SUBJECT>/'"${DIGEST_SUBJECT}"'/g' \
 	-e 's/<SMTP_SERVER>/'${SMTP_SERVER}'/g' \
 	-e 's/<SMTP_LOGIN>/'${SMTP_LOGIN}'/g' \
-	-e 's/<SMTP_PASSWORD>/'${SMTP_PASSWORD}'/g' \
+	-e 's/<SMTP_PASSWORD>/'"${SMTP_PASSWORD}"'/g' \
 	-e 's/<SMTP_SECURE>/'${SMTP_SECURE}'/g' \
 	-e 's/<CHECK_FOR_UPDATES>/'${CHECK_FOR_UPDATES}'/g' \
 	-e 's/<ENABLE_GZIP_OUTPUT>/'${ENABLE_GZIP_OUTPUT}'/g' \

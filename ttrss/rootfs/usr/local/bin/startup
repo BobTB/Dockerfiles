@@ -37,7 +37,7 @@ sed -i -e 's/<DB_TYPE>/'$DB_TYPE'/g' \
 
 mkdir -p /nginx /php
 
-chown -R web:web /nginx /php /etc/s6.d
+chown -R web:web /nginx /php /etc/s6.d /tt-rss
 chmod +x /etc/s6.d/*/run /etc/s6.d/.s6-svscan/finish
 
 if [ '$@' == '' ]; then

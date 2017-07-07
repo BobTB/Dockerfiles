@@ -10,21 +10,21 @@ sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g' \
 	-e 's/<DB_NAME>/'${DB_NAME}'/g' \
 	-e 's/<DB_PASS>/'${DB_PASS}'/g' \
 	-e 's/<DB_PORT>/'${DB_PORT}'/g' \
-	-e 's#<URL>#'${URL}'#g' \
+	-e 's#<URL>#'"${URL}"'#g' \
 	-e 's/<SINGLE_USER_MODE>/'${SINGLE_USER_MODE}'/g' \
 	-e 's/<SIMPLE_UPDATE_MODE>/'${SIMPLE_UPDATE_MODE}'/g' \
 	-e 's/<AUTH_AUTO_CREATE>/'${AUTH_AUTO_CREATE}'/g' \
 	-e 's/<AUTH_AUTO_LOGIN>/'${AUTH_AUTO_LOGIN}'/g' \
 	-e 's/<FORCE_ARTICLE_PURGE>/'${FORCE_ARTICLE_PURGE}'/g' \
 	-e 's/<SPHINX_SERVER>/'${SPHINX_SERVER}'/g' \
-	-e 's/<SPHINX_INDEX>/'${SPHINX_INDEX}'/g' \
+	-e 's/<SPHINX_INDEX>/'"${SPHINX_INDEX}"'/g' \
 	-e 's/<ENABLE_REGISTRATION>/'${ENABLE_REGISTRATION}'/g' \
 	-e 's/<REG_NOTIFY_ADDRESS>/'${REG_NOTIFY_ADDRESS}'/g' \
 	-e 's/<REG_MAX_USERS>/'${REG_MAX_USERS}'/g' \
 	-e 's/<SESSION_COOKIE_LIFETIME>/'${SESSION_COOKIE_LIFETIME}'/g' \
 	-e 's/<SMTP_FROM_NAME>/'${SMTP_FROM_NAME}'/g' \
-	-e 's/<SMTP_FROM_ADDRESS>/'${SMTP_FROM_ADDRESS}'/g' \
-	-e 's/<DIGEST_SUBJECT>/'${DIGEST_SUBJECT}'/g' \
+	-e 's/<SMTP_FROM_ADDRESS>/'"${SMTP_FROM_ADDRESS}"'/g' \
+	-e 's/<DIGEST_SUBJECT>/'"${DIGEST_SUBJECT}"'/g' \
 	-e 's/<SMTP_SERVER>/'${SMTP_SERVER}'/g' \
 	-e 's/<SMTP_LOGIN>/'${SMTP_LOGIN}'/g' \
 	-e 's/<SMTP_PASSWORD>/'${SMTP_PASSWORD}'/g' \

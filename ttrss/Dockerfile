@@ -28,7 +28,7 @@ ENV DB_TYPE=pgsql \
     SMTP_SECURE="tls" \
     CHECK_FOR_UPDATES="true" \
     ENABLE_GZIP_OUTPUT="false" \
-    PLUGINS='auth_internal, note' \
+    PLUGINS="auth_internal, note" \
     LOG_DESTINATION="syslog" \
     CONFIG_VERSION=26
 

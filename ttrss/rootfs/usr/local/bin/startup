@@ -1,10 +1,10 @@
 #!/bin/sh
 
-addgroup -g $"{GID}" web && adduser -H -s /bin/sh -D -G web -u $"{UID}" web
+addgroup -g ${GID} web && adduser -H -s /bin/sh -D -G web -u ${UID} web
 
 sed -i -e 's/<DOMAIN>/'$DOMAIN'/g' /nginx/sites-enabled/tt-rss.conf
 
-sed -i -e 's/<DB_TYPE>/'"${DB_TYPE}"'/g' \
+sed -i -e 's/<DB_TYPE>/'"${DB_TYPE}'/g' \
 	-e 's/<DB_HOST>/'"${DB_HOST}"'/g' \
 	-e 's/<DB_USER>/'"${DB_USER}"'/g' \
 	-e 's/<DB_NAME>/'"${DB_NAME}"'/g' \

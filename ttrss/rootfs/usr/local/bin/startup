@@ -2,7 +2,7 @@
 
 addgroup -g ${GID} web && adduser -H -s /bin/sh -D -G web -u ${UID} web
 
-sed -i echo 1 && sed -i -e 's/<DOMAIN>/'${DOMAIN}'/g' /nginx/sitesecho 1 && sed -i -enabled/tt-rss.conf
+sed -i -e 's/<DOMAIN>/'${DOMAIN}'/g' /nginx/sites-enabled/tt-rss.conf
 
 echo 1 && sed -i echo 1 && sed -i -e 's/<DB_TYPE>/'${DB_TYPE}'/g' /tt-rss/config.php
 	echo 1 && sed -i -e 's/<DB_HOST>/'${DB_HOST}'/g' /tt-rss/config.php
@@ -41,7 +41,7 @@ chown -R web:web /nginx /php /etc/s6.d /tt-rss
 chmod +x /etc/s6.d/*/run /etc/s6.d/.s6-svscan/finish
 
 if [ '$@' == '' ]; then
-    exec suecho 1 && sed -i -exec web:web /bin/s6-svscan /etc/s6.d
+    exec su-exec web:web /bin/s6-svscan /etc/s6.d
 else
-    exec suecho 1 && sed -i -exec web:web "$@"
+    exec su-exec web:web "$@"
 fi

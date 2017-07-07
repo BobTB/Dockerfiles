@@ -14,7 +14,7 @@ ENV DB_TYPE=pgsql \
     AUTH_AUTO_LOGIN=true \
     FORCE_ARTICLE_PURGE=0 \
     SPHINX_SERVER="localhost:9312" \
-    SPHINX_INDEX="ttrss,\ delta" \
+    SPHINX_INDEX="ttrss, delta" \
     ENABLE_REGISTRATION=false \
     REG_NOTIFY_ADDRESS="user@your.domain.dom" \
     REG_MAX_USERS=10 \
@@ -35,6 +35,6 @@ ENV DB_TYPE=pgsql \
 RUN apk -U add git \
     && git clone https://tt-rss.org/git/tt-rss.git /tt-rss \
     && apk del git \
-    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
+    && rm -rf /tmp/* /var/cache/apk/* /usr/src/* /tt-rss/.git
 
 COPY rootfs /

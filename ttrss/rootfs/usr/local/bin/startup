@@ -27,7 +27,7 @@ sed -i -e 's/<DOMAIN>/'${DOMAIN}'/g' /nginx/sites-enabled/tt-rss.conf
 	echo 1 && sed -i -e 's/<DIGEST_SUBJECT>/'"${DIGEST_SUBJECT}"'/g' /tt-rss/config.php
 	echo 1 && sed -i -e 's/<SMTP_SERVER>/'${SMTP_SERVER}'/g' /tt-rss/config.php
 	echo 1 && sed -i -e 's/<SMTP_LOGIN>/'${SMTP_LOGIN}'/g' /tt-rss/config.php
-	echo 1 && sed -i -e 's/<SMTP_PASSWORD>/'"${SMTP_PASSWORD}"'/g' /tt-rss/config.php
+	echo 1 && sed -i -e 's|<SMTP_PASSWORD>|'"${SMTP_PASSWORD}"'|g' /tt-rss/config.php
 	echo 1 && sed -i -e 's/<SMTP_SECURE>/'"${SMTP_SECURE}"'/g' /tt-rss/config.php
 	echo 1 && sed -i -e 's/<CHECK_FOR_UPDATES>/'${CHECK_FOR_UPDATES}'/g' /tt-rss/config.php
 	echo 1 && sed -i -e 's/<ENABLE_GZIP_OUTPUT>/'${ENABLE_GZIP_OUTPUT}'/g' /tt-rss/config.php

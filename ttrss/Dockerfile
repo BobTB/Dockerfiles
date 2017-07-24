@@ -35,6 +35,8 @@ ENV DB_TYPE=pgsql \
 RUN apk -U add git \
     && git clone https://tt-rss.org/git/tt-rss.git /tt-rss \
     && apk del git \
+    && echo "*/30 * * * * su-exec web:web /usr/local/bin/php /www/update.php --feeds --quiet" >> updateRSS \ 
+    && crontab updateRSS \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/* /tt-rss/.git
 
 COPY rootfs /

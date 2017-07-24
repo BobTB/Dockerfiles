@@ -11,7 +11,7 @@ case "$CMD" in
     cd /standardfile/
     bundle exec rails db:create db:migrate
     bundle install
-    bower install
+    bower install --allow-root
     bundle exec rails s -b 0.0.0.0
     ;;
 

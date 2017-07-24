@@ -9,6 +9,9 @@ case "$CMD" in
     echo `pwd`
     rm -f /data/src/tmp/pids/server.pid
     cd /standardfile/
+    bundle exec rails db:create db:migrate
+    bundle install
+    bower install
     bundle exec rails s -b 0.0.0.0
     ;;
 

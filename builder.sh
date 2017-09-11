@@ -56,3 +56,5 @@ else
 	   fi
    done
 fi
+
+git push --mirror git@github.com:Dryusdan/Dockerfiles.git

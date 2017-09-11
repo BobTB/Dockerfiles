@@ -5,124 +5,16 @@ Sending build context to Docker daemon  23.04kB
 Step 1/16 : FROM debian:jessie
  ---> d86f7a8ce98f
 Step 2/16 : MAINTAINER Alt Three <support@alt-three.com>
- ---> Running in 3410c5b88f40
- ---> 267bcb8c5dbe
-Removing intermediate container 3410c5b88f40
+ ---> Running in 624772845c98
+ ---> 333a0ed67b66
+Removing intermediate container 624772845c98
 Step 3/16 : EXPOSE 8000
- ---> Running in 751a5953af2d
- ---> c01e13de828e
-Removing intermediate container 751a5953af2d
+ ---> Running in fea6568c92c2
+ ---> 293787c5ce97
+Removing intermediate container fea6568c92c2
 Step 4/16 : CMD /sbin/entrypoint.sh
- ---> Running in e78f5b030efd
- ---> c53d4778706f
-Removing intermediate container e78f5b030efd
+ ---> Running in ab2ffe093149
+ ---> 23063c19be64
+Removing intermediate container ab2ffe093149
 Step 5/16 : ARG cachet_ver
- ---> Running in 9737a4631b40
- ---> bee0dfbbe630
-Removing intermediate container 9737a4631b40
-Step 6/16 : ENV cachet_ver ${cachet_ver:-master}  PG_MAJOR 9.5  NGINX_VERSION 1.10.1-1~jessie  COMPOSER_VERSION 1.4.1
- ---> Running in 420bd56cbef8
- ---> 09db4f3fecaa
-Removing intermediate container 420bd56cbef8
-Step 7/16 : RUN mkdir -p /var/cache/apt/archives/ /var/cache/apt/archives/partial/  && touch /var/cache/apt/archives/lock  && apt-get autoremove && apt-get clean && apt-get autoclean  && apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8  && apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62  && echo "deb http://nginx.org/packages/debian/ jessie nginx" > /etc/apt/sources.list.d/nginx.list  && echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list  && DEBIAN_FRONTEND=noninteractive     apt-get clean &&     apt-get -q -y update &&     apt-get -q -y install     ca-certificates     postgresql-client-$PG_MAJOR     mysql-client     nginx=${NGINX_VERSION}     php5-fpm php5-curl     php5-readline php5-mcrypt sudo     php5-apcu php5-cli php5-gd     php5-mysql php5-pgsql php5-sqlite     wget sqlite libsqlite3-dev git     supervisor &&     apt-get clean && apt-get autoremove -q &&     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*  && ln -sf /dev/stdout /var/log/nginx/access.log  && ln -sf /dev/stderr /var/log/nginx/error.log  && touch /var/run/nginx.pid /var/run/php5-fpm.pid  && chown -R www-data:www-data /var/run/nginx.pid /var/run/php5-fpm.pid  && adduser www-data sudo  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers  && mkdir -p /var/www/html /usr/share/nginx/cache  && chown -R www-data:www-data /var/www /usr/share/nginx/cache /var/cache/nginx  && php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" &&     php -r "copy('https://composer.github.io/installer.sig', '/tmp/composer-setup.sig');" &&     php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" &&     php /tmp/composer-setup.php --version=$COMPOSER_VERSION --install-dir=bin &&     php -r "unlink('/tmp/composer-setup.php');"
- ---> Running in 9e00e198ae5a
-Reading package lists...
-Building dependency tree...
-Reading state information...
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Reading package lists...
-Building dependency tree...
-Reading state information...
-Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.frPr9L0p4N --no-auto-check-trustdb --trust-model always --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-security-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-stable.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-stretch-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-stretch-security-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-stretch-stable.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-wheezy-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-wheezy-stable.gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
-[91mgpg: requesting key ACCC4CF8 from hkp server ha.pool.sks-keyservers.net
-[0m[91mgpg: key ACCC4CF8: public key "PostgreSQL Debian Repository" imported
-gpg: Total number processed: 1
-gpg:               imported: 1  (RSA: 1)
-[0mExecuting: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.96T1wQMLBa --no-auto-check-trustdb --trust-model always --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-security-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-stable.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-stretch-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-stretch-security-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-stretch-stable.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-wheezy-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-wheezy-stable.gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
-[91mgpg: requesting key 7BD9BF62 from hkp server pgp.mit.edu
-[0m[91mgpg: key 7BD9BF62: public key "nginx signing key <signing-key@nginx.com>" imported
-gpg: Total number processed: 1
-gpg:               imported: 1  (RSA: 1)
-[0mGet:1 http://security.debian.org jessie/updates InRelease [63.1 kB]
-Ign http://deb.debian.org jessie InRelease
-Get:2 http://deb.debian.org jessie-updates InRelease [145 kB]
-Get:3 http://deb.debian.org jessie Release.gpg [2373 B]
-Get:4 http://deb.debian.org jessie Release [148 kB]
-Get:5 http://security.debian.org jessie/updates/main amd64 Packages [561 kB]
-Get:6 http://apt.postgresql.org jessie-pgdg InRelease [56.4 kB]
-Get:7 http://deb.debian.org jessie-updates/main amd64 Packages [23.1 kB]
-Get:8 http://nginx.org jessie InRelease [2847 B]
-Get:9 http://deb.debian.org jessie/main amd64 Packages [9063 kB]
-Get:10 http://nginx.org jessie/nginx amd64 Packages [9827 B]
-Get:11 http://apt.postgresql.org jessie-pgdg/main amd64 Packages [118 kB]
-Fetched 10.2 MB in 1s (6059 kB/s)
-Reading package lists...
-Reading package lists...
-Building dependency tree...
-Reading state information...
-[91mE: Version '' for 'nginx' was not found
-[0mThe push refers to a repository [registry.dryusdan.fr/dryusdan/cachethq]
-2ce38ac14350: Preparing
-33621645836c: Preparing
-62c5ed19414c: Preparing
-da3eb03d1e20: Preparing
-486d797bc673: Preparing
-4da125dc5dd3: Preparing
-bff19432027c: Preparing
-a780ff9ce31d: Preparing
-d6f3daa65a94: Preparing
-0747cea67f2f: Preparing
-27c0c2945f3d: Preparing
-53b68b0f23dd: Preparing
-3d37d6aef825: Preparing
-61f0d0c8c69d: Preparing
-0bb0d046ebbb: Preparing
-194bcf08276a: Preparing
-7c49634a1c14: Preparing
-8d4d1ab5ff74: Preparing
-53b68b0f23dd: Waiting
-3d37d6aef825: Waiting
-61f0d0c8c69d: Waiting
-0bb0d046ebbb: Waiting
-194bcf08276a: Waiting
-7c49634a1c14: Waiting
-4da125dc5dd3: Waiting
-8d4d1ab5ff74: Waiting
-bff19432027c: Waiting
-a780ff9ce31d: Waiting
-d6f3daa65a94: Waiting
-0747cea67f2f: Waiting
-27c0c2945f3d: Waiting
-62c5ed19414c: Layer already exists
-da3eb03d1e20: Layer already exists
-486d797bc673: Layer already exists
-2ce38ac14350: Layer already exists
-4da125dc5dd3: Layer already exists
-33621645836c: Layer already exists
-bff19432027c: Layer already exists
-d6f3daa65a94: Layer already exists
-a780ff9ce31d: Layer already exists
-0747cea67f2f: Layer already exists
-27c0c2945f3d: Layer already exists
-53b68b0f23dd: Layer already exists
-61f0d0c8c69d: Layer already exists
-3d37d6aef825: Layer already exists
-0bb0d046ebbb: Layer already exists
-194bcf08276a: Layer already exists
-7c49634a1c14: Layer already exists
-8d4d1ab5ff74: Layer already exists
-latest: digest: sha256:c15320f5ab337612ca752a4b95b73c996c3ec7a0fd958ecdff936da969271ba2 size: 4066
-**** Build ghost image ***
-Sending build context to Docker daemon  18.43kB
-Step 1/12 : FROM alpine:3.6
- ---> 7328f6f8b418
-Step 2/12 : ARG VERSION=1.8.4
- ---> Running in 6ed41cbb7241
- ---> 76abac3d0e29
-Removing intermediate container 6ed41cbb7241
-Step 3/12 : ENV GHOST_NODE_VERSION_CHECK false NODE_ENV production GID 991 UID 991 ADDRESS https://my-ghost-blog.com ENABLE_ISSO False ISSO_HOST isso.domain.tld ISSO_AVATAR false ISSO_VOTE false
- ---> Running in e79fc769675e
- ---> 682a4698a850
-Removing intermediate container e79fc769675e
-Step 4/12 : WORKDIR /ghost
- ---> 4ec27462a6b4
+ ---> Running in 6c1d450f5141

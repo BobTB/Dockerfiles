@@ -36,8 +36,6 @@ if [ -n "$1" ]; then
       else
          FORCE_BUILD=0
       fi
-   else
-      FORCE_BUILD=0
    fi
 else
    FORCE_BUILD=0
@@ -53,8 +51,7 @@ else
     for directory in * ; do
        if [ -f "$directory/Dockerfile" ]; then
 	       f_build_and_push $directory $FORCE_BUILD
-	   fi
-   done
+       fi
+    done
+    #git push --mirror git@github.com:Dryusdan/Dockerfiles.git
 fi
-
-git push --mirror git@github.com:Dryusdan/Dockerfiles.git

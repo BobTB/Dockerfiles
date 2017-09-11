@@ -1,0 +1,8 @@
+pipeline:
+  buildPresentator:
+    image: docker:dind
+    commandes:
+      - apk -U add git
+      - git clone https://git.drycat.fr/Dryusdan/Dockerfiles.git
+      - cd Dockerfiles
+      - sh presentator/builder.sh

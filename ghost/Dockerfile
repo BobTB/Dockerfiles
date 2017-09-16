@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-ARG VERSION=1.8.4
+ARG VERSION=1.8.6
 
 ENV GHOST_NODE_VERSION_CHECK=false \
     NODE_ENV=production \
@@ -35,9 +35,6 @@ RUN chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/*
 EXPOSE 2368
 
 VOLUME /ghost/content
-
-LABEL description="Ghost CMS ${VERSION}" \
-      maintainer="Wonderfall <wonderfall@targaryen.house>"
 
 ENTRYPOINT ["run.sh"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

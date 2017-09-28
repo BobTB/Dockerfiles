@@ -3,7 +3,7 @@ FROM xataz/nginx-php
 ENV UID=991 \
     GID=991 \
     PUBLIC_URL=phproject.org \
-    PHPROJECTVERSION=1.5.2
+    PHPROJECTVERSION=1.6.2
 
 RUN apk add -U wget \
 	&& cd /tmp \

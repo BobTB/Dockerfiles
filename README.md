@@ -1,5 +1,4 @@
 # Dockerfile
-[![build status](https://git.drycat.fr/Dryusdan/Dockerfiles/badges/master/build.svg)](https://git.drycat.fr/Dryusdan/Dockerfiles/commits/master)
 ## What ?
 In this repository, you will find lots of dockerfiles, with a philosophy of being as light as possible, easy to use.
 

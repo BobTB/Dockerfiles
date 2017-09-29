@@ -1,8 +1,8 @@
-## wonderfall/ghost
+## Dryusdan/ghost
 
 ![](https://i.goopics.net/lt.png)
 
-**Breaking changes if you're upgrading from 0.x. Please export your current data, and import them again in a new 1.x blog. You also have to move your images to the new volume if you want to keep them. Disqus is also not supported, please move to Isso, a much better comments system. Sorry for the mess!**
+https://img.shields.io/badge/Ghost%20version-1.10.0-blue.svg
 
 #### What is this? What features?
 - A **simple** Ghost CMS build made for production.
@@ -33,7 +33,7 @@ Everything you need is in `/ghost/content/ghost.conf` (also mounted on your host
 
 ```
 ghost-myblog:
-  image: wonderfall/ghost:1
+  image: dryusdan/ghost
   container_name: ghost-myblog
   environment:
     - UID=8100

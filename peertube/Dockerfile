@@ -1,6 +1,6 @@
 FROM xataz/nginx
 
-FROM node:6-alpine
+FROM xataz/node:lts
 
 ENV UID=991 GID=991 \
     HTTPS=false \

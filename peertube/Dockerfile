@@ -23,13 +23,14 @@ RUN apk -U upgrade \
        g++ \
        python \
     && apk -U add yarn ffmpeg libressl su-exec curl\
-      && git clone -b master https://github.com/Chocobozzz/PeerTube /PeerTube \
-      && cd /PeerTube \
-      && yarn install \
-      && npm install \
-      && npm run build \
-      && apk del build-dependencies \
-      && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /PeerTube/.git
+    && git clone -b master https://github.com/Chocobozzz/PeerTube /PeerTube \
+    && cd /PeerTube \
+    && git checkout develop
+    && yarn install \
+    && npm install \
+    && npm run build \
+    && apk del build-dependencies \
+    && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /PeerTube/.git
 
 COPY rootfs /
 

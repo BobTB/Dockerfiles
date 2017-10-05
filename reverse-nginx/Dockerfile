@@ -63,9 +63,9 @@ RUN export BUILD_DEPS="build-base \
     && git clone https://github.com/openresty/headers-more-nginx-module --depth=1 \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
-    && gpg --no-tty --keyserver pgp.mit.edu --recv-keys "$NGINX_GPG" || \
-    && gpg --no-tty --keyserver keyserver.pgp.com --recv-keys "$NGINX_GPG" || \
-    && gpg --no-tty --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" ; \
+    && gpg --keyserver pgp.mit.edu --recv-keys "$NGINX_GPG" || \
+       gpg --keyserver keyserver.pgp.com --recv-keys "$NGINX_GPG" || \
+       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" ; \
 	&& found=yes && break; \
 	test -z "$found" && echo >&2 "error: failed to fetch GPG key $$NGINX_GPG" && exit 1; \
     && gpg --batch --verify nginx-${NGINX_VER}.tar.gz.asc nginx-${NGINX_VER}.tar.gz \

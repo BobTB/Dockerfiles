@@ -65,9 +65,7 @@ RUN export BUILD_DEPS="build-base \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
     && gpg --keyserver pgp.mit.edu --recv-keys "$NGINX_GPG" || \
        gpg --keyserver keyserver.pgp.com --recv-keys "$NGINX_GPG" || \
-       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" ; \
-	&& found=yes && break; \
-	test -z "$found" && echo >&2 "error: failed to fetch GPG key $$NGINX_GPG" && exit 1; \
+       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
     && gpg --batch --verify nginx-${NGINX_VER}.tar.gz.asc nginx-${NGINX_VER}.tar.gz \
     && tar xzf nginx-${NGINX_VER}.tar.gz \
     && cd /tmp/nginx-${NGINX_VER} \

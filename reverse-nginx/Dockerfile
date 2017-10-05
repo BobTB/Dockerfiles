@@ -7,7 +7,7 @@ LABEL Description="reverse with nginx based on alpine" \
 
 ARG NGINX_VER=1.13.5
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
-ARG TOR_GPG="0x4E2C6E8793298290"
+ARG TOR_GPG="5242013F02AFC851B1C736B87017ADCEF65C2036"
 ARG BUILD_CORES
 ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
@@ -33,7 +33,7 @@ ARG NGINX_CONF="--prefix=/nginx \
                 --without-http_empty_gif_module \
                 --add-module=/tmp/headers-more-nginx-module \
                 --without-http_browser_module"
-ARG TOR_VERSION=0.3.1.7
+ARG TOR_VER=0.3.1.7
 
 ENV UID=991 \
     GID=991 \
@@ -79,14 +79,14 @@ RUN export BUILD_DEPS="build-base \
     && go get github.com/xenolf/lego \
     && mv /tmp/go/bin/lego /usr/local/bin/lego \
     && cd /tmp \
-    && wget https://www.torproject.org/dist/tor-${TOR_VERSION}.tar.gz \
-    && wget https://www.torproject.org/dist/tor-${TOR_VERSION}.tar.gz.asc \
+    && wget https://www.torproject.org/dist/tor-${TOR_VER}.tar.gz \
+    && wget https://www.torproject.org/dist/tor-${TOR_VER}.tar.gz.asc \
 	&& gpg --keyserver pgp.mit.edu --recv-keys "$TOR_GPG" || \
        gpg --keyserver keyserver.pgp.com --recv-keys "$TOR_GPG" || \
        gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$TOR_GPG" \
-    && gpg --batch --verify tor-${TOR_VERSION}.tar.gz.asc tor-${TOR_VERSION}.tar.gz \
-    && tar xzf tor-${TOR_VERSION}.tar.gz \
-    && cd tor-${TOR_VERSION} \
+    && gpg --batch --verify tor-${TOR_VERSION}.tar.gz.asc tor-${TOR_VER}.tar.gz \
+    && tar xzf tor-${TOR_VER}.tar.gz \
+    && cd tor-${TOR_VER} \
     && ./configure \
     && make -j ${NB_CORES} \
     && make install \

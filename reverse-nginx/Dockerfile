@@ -84,7 +84,7 @@ RUN export BUILD_DEPS="build-base \
 	&& gpg --keyserver pgp.mit.edu --recv-keys "$TOR_GPG" || \
        gpg --keyserver keyserver.pgp.com --recv-keys "$TOR_GPG" || \
        gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$TOR_GPG" \
-    && gpg --batch --verify tor-${TOR_VERSION}.tar.gz.asc tor-${TOR_VER}.tar.gz \
+    && gpg --batch --verify tor-${TOR_VER}.tar.gz.asc tor-${TOR_VER}.tar.gz \
     && tar xzf tor-${TOR_VER}.tar.gz \
     && cd tor-${TOR_VER} \
     && ./configure \

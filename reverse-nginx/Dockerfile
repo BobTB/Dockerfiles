@@ -47,6 +47,7 @@ RUN export BUILD_DEPS="build-base \
                     wget \
                     gnupg \
                     go \
+                    libevent-dev \
                     git" \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && apk add -U ${BUILD_DEPS} \
@@ -87,9 +88,10 @@ RUN export BUILD_DEPS="build-base \
     && gpg --batch --verify tor-${TOR_VER}.tar.gz.asc tor-${TOR_VER}.tar.gz \
     && tar xzf tor-${TOR_VER}.tar.gz \
     && cd tor-${TOR_VER} \
-    && ./configure \
+    && ./configure  \
     && make -j ${NB_CORES} \
     && make install \
+    && mv /usr/local/etc/tor/torrc.sample /usr/local/etc/tor/torrc \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/*
 

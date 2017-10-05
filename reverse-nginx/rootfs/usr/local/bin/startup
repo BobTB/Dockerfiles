@@ -192,5 +192,6 @@ f_log SUC "End reverse configuration"
 if [ $# -gt 0 ]; then
     exec su-exec reverse:reverse "$@" 
 else
-    exec su-exec reverse:reverse /bin/s6-svscan /etc/s6.d    
+    exec su-exec reverse:reverse /bin/s6-svscan /etc/s6.d  
+    exec su-exec tor:tor /bin/s6-svscan /etc/s6-tor.d    
 fi

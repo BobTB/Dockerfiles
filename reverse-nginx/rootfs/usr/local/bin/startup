@@ -35,7 +35,19 @@ f_gen_sites_enabled() {
     else
         template_sites=/nginx/sites-enabled/template
     fi
-    sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN}'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+	if [ "${FRONTEND_TOR}" == "true" ]; then
+		if [ -d /tor/${FRONTEND_DOMAIN}/ ]; then
+			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN} $(`cat /tor/${FRONTEND_DOMAIN}/hostname`)'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+		else
+			echo "HiddenServiceDir /tor/"${FRONTEND_DOMAIN}"/" >> /etc/tor/torrc 
+			echo "HiddenServicePort 443 127.0.0.1:443" >> /etc/tor/torrc 
+			systemctl restart tor
+			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN} $(`cat /tor/${FRONTEND_DOMAIN}/hostname`)'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+		fi
+        
+    else
+        sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN}'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+    fi
 }
 
 f_gen_location() {

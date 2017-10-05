@@ -7,6 +7,7 @@ LABEL Description="reverse with nginx based on alpine" \
 
 ARG NGINX_VER=1.13.5
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
+ARG TOR_GPG="0x4E2C6E8793298290"
 ARG BUILD_CORES
 ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
@@ -32,6 +33,7 @@ ARG NGINX_CONF="--prefix=/nginx \
                 --without-http_empty_gif_module \
                 --add-module=/tmp/headers-more-nginx-module \
                 --without-http_browser_module"
+ARG TOR_VERSION=0.3.1.7
 
 ENV UID=991 \
     GID=991 \
@@ -56,12 +58,12 @@ RUN export BUILD_DEPS="build-base \
                 libressl \
                 pcre \
                 zlib \
-		tor \
+                libevent \
     && cd /tmp \
     && git clone https://github.com/openresty/headers-more-nginx-module --depth=1 \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
-    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
+    && gpg --keyserver pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
     && gpg --batch --verify nginx-${NGINX_VER}.tar.gz.asc nginx-${NGINX_VER}.tar.gz \
     && tar xzf nginx-${NGINX_VER}.tar.gz \
     && cd /tmp/nginx-${NGINX_VER} \
@@ -74,6 +76,16 @@ RUN export BUILD_DEPS="build-base \
     && git config --global http.https://gopkg.in.followRedirects true \
     && go get github.com/xenolf/lego \
     && mv /tmp/go/bin/lego /usr/local/bin/lego \
+    && cd /tmp \
+    && wget https://www.torproject.org/dist/tor-${TOR_VERSION}.tar.gz \
+    && wget https://www.torproject.org/dist/tor-${TOR_VERSION}.tar.gz.asc \
+    && gpg --keyserver pool.sks-keyservers.net --recv-keys ${TOR_GPG} \
+    && gpg --batch --verify tor-${TOR_VERSION}.tar.gz.asc tor-${TOR_VERSION}.tar.gz \
+    && tar xzf tor-${TOR_VERSION}.tar.gz \
+    && cd tor-${TOR_VERSION} \
+    && ./configure \
+    && make -j ${NB_CORES} \
+    && make install \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/*
 

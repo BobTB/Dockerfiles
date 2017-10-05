@@ -39,9 +39,9 @@ f_gen_sites_enabled() {
 		if [ -d /tor/${FRONTEND_DOMAIN}/ ]; then
 			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN} $(`cat /tor/${FRONTEND_DOMAIN}/hostname`)'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
 		else
-			echo "HiddenServiceDir /tor/"${FRONTEND_DOMAIN}"/" >> /etc/tor/torrc 
+			echo "HiddenServiceDir /var/lib/tor/"${FRONTEND_DOMAIN}"/" >> /etc/tor/torrc 
 			echo "HiddenServicePort 443 127.0.0.1:443" >> /etc/tor/torrc 
-			systemctl restart tor
+			rc-service tor reload
 			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN} $(`cat /tor/${FRONTEND_DOMAIN}/hostname`)'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
 		fi
         
@@ -113,7 +113,7 @@ f_make_conf() {
     FRONTEND_PATH="/"
     FRONTEND_SSL=false
     FRONTEND_AUTH=""
-
+    FRONTEND_TOR=false
     container_name=$1
     IFS=$'\n' 
     if [ "${CONTAINER_LABELS}" != "" ]; then
@@ -137,6 +137,9 @@ f_make_conf() {
                 ;;
                 "reverse.frontend.ssl")
                     FRONTEND_SSL="$(echo ${label} | awk '{print $2}')"
+                ;;
+                "reverse.frontend.tor")
+                    FRONTEND_TOR="$(echo ${label} | awk '{print $2}')"
                 ;;
                 "reverse.backend.port")
                     BACKEND_PORT="$(echo ${label} | awk '{print $2}')"
@@ -188,7 +191,7 @@ f_log SUC "End reverse configuration"
 
 ## run s6
 if [ $# -gt 0 ]; then
-    exec su-exec reverse:reverse "$@"
+    exec su-exec reverse:reverse "$@" 
 else
     exec su-exec reverse:reverse /bin/s6-svscan /etc/s6.d    
 fi

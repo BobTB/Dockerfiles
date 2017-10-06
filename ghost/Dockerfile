@@ -37,5 +37,5 @@ EXPOSE 2368
 
 VOLUME /ghost/content
 
-ENTRYPOINT ["run.sh"]
+ENTRYPOINT ["startup"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

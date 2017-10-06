@@ -1,8 +1,8 @@
 ## Dryusdan/ghost
 
-![](https://i.goopics.net/lt.png)
+![](https://img.shields.io/badge/Ghost%20version-1.12.1-blue.svg)
 
-https://img.shields.io/badge/Ghost%20version-1.10.0-blue.svg
+
 
 #### What is this? What features?
 - A **simple** Ghost CMS build made for production.

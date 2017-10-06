@@ -1,9 +1,5 @@
 #!/bin/bash
-echo
-echo ">>> wonderfall/ghost container <<<"
-echo
 
-echo "> Initializing content folder..."
 cd content
 mkdir apps data images themes logs adapters &>/dev/null
 rm -rf /ghost/content/themes/casper &>/dev/null
@@ -19,11 +15,7 @@ if [ ! -f /ghost/content/ghost.conf ]; then
   mv /usr/local/etc/ghost.example.conf /ghost/content/ghost.conf
 fi
 
-if [ ! -f /ghost/config.production.json ]; then
-  ln -s content/ghost.conf config.production.json
-fi
-
-echo "> Applying preferences..."
+cp -f content/ghost.conf config.production.json
 
 sed -i -e "s|https://my-ghost-blog.com|${ADDRESS}|g" /ghost/content/ghost.conf
 
@@ -36,10 +28,8 @@ if [ "$ENABLE_ISSO" == "True" ] && ! grep -q 'isso' /ghost/content/themes/casper
            -e "s/<VOTE>/$ISSO_VOTE/g" /ghost/content/themes/casper/post.hbs
 fi
 
-echo "> Updating permissions..."
 chown -R ${UID}:${GID} /ghost /etc/s6.d
 
-echo "> Executing process..."
 if [ '$@' == '' ]; then
     exec su-exec ${UID}:${GID} /bin/s6-svscan /etc/s6.d
 else

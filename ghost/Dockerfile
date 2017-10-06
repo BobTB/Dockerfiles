@@ -26,6 +26,7 @@ RUN apk -U --no-cache add \
  && wget -q https://github.com/TryGhost/Ghost/releases/download/${VERSION}/Ghost-${VERSION}.zip -P /tmp \
  && unzip -q /tmp/Ghost-${VERSION}.zip -d /ghost \
  && npm install --production \
+ && npm install -g knex-migrator \
  && mv content/themes/casper casper
 
 COPY rootfs /

@@ -1,6 +1,6 @@
 ## Dryusdan/ghost
 
-![](https://img.shields.io/badge/Ghost%20version-1.14.0-blue.svg)
+![](https://img.shields.io/badge/Ghost%20version-1.15.0-blue.svg)
 
 
 

@@ -98,7 +98,7 @@ RUN export BUILD_DEPS="build-base \
 COPY rootfs /
 RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
 
-EXPOSE 8080 8443
+EXPOSE 80 443
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

@@ -53,5 +53,5 @@ else
 	       f_build_and_push $directory $FORCE_BUILD
        fi
     done
-    #git push --mirror git@github.com:Dryusdan/Dockerfiles.git
+    git push --mirror git@github.com:Dryusdan/Dockerfiles.git
 fi

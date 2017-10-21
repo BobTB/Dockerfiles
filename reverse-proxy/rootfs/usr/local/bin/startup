@@ -37,15 +37,20 @@ f_gen_sites_enabled() {
     fi
 	if [ "${FRONTEND_TOR}" == "true" ]; then
 		if [ -d /tor/${FRONTEND_DOMAIN}/ ]; then
-			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN} $(`cat /tor/${FRONTEND_DOMAIN}/hostname`)'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+                        ONION_DOMAIN=$(cat /tor/${FRONTEND_DOMAIN}/hostname)
+                        echo "HiddenServiceDir /tor/"${FRONTEND_DOMAIN}"/" >> /etc/tor/torrc
+                        echo "HiddenServicePort 443 127.0.0.1:443" >> /etc/tor/torrc
+			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN}'|' \
+                            -e 's|<onion_domain>|'${ONION_DOMAIN}'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
 		else
-			echo "HiddenServiceDir /var/lib/tor/"${FRONTEND_DOMAIN}"/" >> /usr/local/etc/tor/torrc 
-			echo "HiddenServicePort 443 127.0.0.1:443" >> /usr/local/etc/tor/torrc 
-			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN} $(`cat /tor/${FRONTEND_DOMAIN}/hostname`)'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
-		fi
-        
+			echo "HiddenServiceDir /tor/"${FRONTEND_DOMAIN}"/" >> /etc/tor/torrc 
+			echo "HiddenServicePort 443 127.0.0.1:443" >> /etc/tor/torrc 
+                        echo "Please restard your container"
+			sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN}'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+                fi     
     else
-        sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN}'|' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
+        sed -e 's|<frontend_domain>|'${FRONTEND_DOMAIN}'|' \
+            -e 's|<onion_domain>| |' ${template_sites} > /nginx/sites-enabled/${FRONTEND_DOMAIN}.conf
     fi
 }
 
@@ -171,8 +176,7 @@ f_log INF "Create user 'reverse'"
 addgroup -g ${GID} reverse && adduser -H -s /bin/sh -D -G reverse -u ${UID} reverse
 f_log INF "Create folder"
 mkdir -p /nginx/sites-enabled /nginx /nginx/log /nginx/run /nginx/sites-enabled /nginx/ssl /nginx/ssl/selfsigned/dhparam
-
-
+mkdir -p /home/reverse/.tor
 # Generate file
 for container in $(curl --unix-socket /var/run/docker.sock http://localhost/containers/json 2> /dev/null | jq '.[].Names' | sed 's|.*"/\(.*\)"$|\1|;/\[/d;/\]/d'); do 
     CONTAINER_LABELS=$(curl --unix-socket /var/run/docker.sock http://localhost/containers/${container}/json 2> /dev/null | jq '.Config.Labels' | grep -E "reverse\." | sed 's|.*"\(.*\)": "\(.*\)".*$|\1 \2|')
@@ -180,7 +184,7 @@ for container in $(curl --unix-socket /var/run/docker.sock http://localhost/cont
 done
 
 f_log INF "Apply permissions"
-chown -R reverse:reverse /nginx /etc/s6.d
+chown -R reverse:reverse /nginx /etc/s6.d /tor/ /home/reverse/.tor
 chmod +x /usr/local/bin/check_certs
 find /etc/s6.d -name run -exec chmod +x {} \;
 find /etc/s6.d -name finish -exec chmod +x {} \;
@@ -190,8 +194,8 @@ f_log SUC "End reverse configuration"
 
 ## run s6
 if [ $# -gt 0 ]; then
-    exec su-exec reverse:reverse "$@" 
+    exec su-exec reverse:reverse "$@"
 else
-    exec su-exec reverse:reverse /bin/s6-svscan /etc/s6.d  
-    exec su-exec tor:tor /bin/s6-svscan /etc/s6-tor.d    
+    exec su-exec reverse:reverse /bin/s6-svscan /etc/s6.d      
 fi
+

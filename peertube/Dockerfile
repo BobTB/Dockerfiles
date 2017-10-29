@@ -1,40 +1,24 @@
-FROM xataz/nginx
-
-FROM xataz/node:lts
-
-ENV UID=991 GID=991 \
-    HTTPS=false \
-    HOSTNAME=peertube.localhost \
-    PORT=80 \
-    DATABASE_HOST=localhost \
-    DATABASE_PORT=5432 \
-    DATABASE_USERNAME=peertube \
-    DATABASE_PASSWORD=peertube \
-    ADMIN_EMAIL=admin@domain.local \
-    SIGNUP_ENABLE=false \
-    TRANSCODING_ENABLE=false \
-    TRANSCODING_THREADS=2 \
-    BODY_SIZE=100M
-
-RUN apk -U upgrade \
-    && apk add -t build-dependencies \
-       git \
-       build-base \
-       g++ \
-       python \
-    && apk -U add yarn ffmpeg libressl su-exec curl\
-    && git clone -b develop https://github.com/Chocobozzz/PeerTube /PeerTube \
-    && cd /PeerTube \
-    && yarn install \
-    && npm install \
-    && npm run build \
-    && apk del build-dependencies \
-    && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /PeerTube/.git
-
-COPY rootfs /
-
-RUN chmod +x /usr/local/bin/startup
-
-WORKDIR /PeerTube/
-VOLUME ["/PeerTube/certs", "/PeerTube/videos", "/PeerTube/logs", "/PeerTube/previews", "/PeerTube/thumbnails", "/PeerTube/torrents"]
-ENTRYPOINT ["/usr/local/bin/startup"]
+FROM node:6.11.5-stretch
+ARG DEBIAN_FRONTEND=noninteractive
+RUN BUILD_DEPS=" \
+	git \
+	curl \
+	apt-transport-https \
+	ca-certificates \
+	wget \
+	bcrypt \
+	build-essential" \
+  && apt-get update \
+  && apt-get install -y -q --no-install-recommends ffmpeg openssl gnupg ${BUILD_DEPS} \
+  && git clone -b master https://github.com/Chocobozzz/PeerTube /PeerTube \
+  && cd PeerTube \
+  && yarn install \
+  && npm run build \
+  && cp config/production.yaml.example config/production.yaml \
+  && apt-get purge -y ${BUILD_DEPS} \
+  && apt-get autoremove -y \
+  && apt-get clean \
+  && rm -rf /PeerTube/.git \
+  && rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old \
+  && rm -rf /usr/share/man/?? \
+  && rm -rf /usr/share/man/??_*

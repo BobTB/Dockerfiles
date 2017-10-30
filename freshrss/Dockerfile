@@ -23,8 +23,4 @@ VOLUME /freshrss/data /php/session
 
 EXPOSE 8080
 
-LABEL maintainer="Wonderfall <wonderfall@targaryen.house>" \
-      description="A free, self-hostable aggregator" \
-      version="FreshRSS ${FRESHRSS_VER}"
-
 CMD ["run.sh"]

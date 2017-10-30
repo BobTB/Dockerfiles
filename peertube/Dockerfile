@@ -20,15 +20,16 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	&& apt-get -y upgrade \
 	&& apt-get -y install ffmpeg openssl curl git build-essential nginx \
 	&& apt-get clean \
-	&& curl -sL https://deb.nodesource.com/setup_6.x | sudo bash - \
-	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
-	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apt-get update \
 	&& apt-get -y install -y nodejs yarn \
 	&& git clone https://github.com/Chocobozzz/PeerTube /PeerTube \
 	&& npm install \
 	&& npm run build \
 	&& apt-get purge -y  build-essential \
+	&& apt-get purge -y $(dpkg-query -Wf '${Package;-40}${Priority}\n' | awk '$2 ~ /optional|extra/ { print $1 }') \
     && apt-get autoremove -y \
 	&& apt-get clean \
 	&& rm -rf /PeerTube/.git \

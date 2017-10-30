@@ -10,7 +10,8 @@ RUN BUILD_DEPS=" \
 	build-essential" \
   && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
   && apt-get update \
-  && apt-get install -y -q --no-install-recommends ffmpeg openssl gnupg nodejs ${BUILD_DEPS} \
+  && apt-get install -y -q --no-install-recommends ffmpeg openssl gnupg nodejs nginx ${BUILD_DEPS} \
+  && curl -L --insecure https://www.npmjs.org/install.sh | bash \
   && git clone -b master https://github.com/Chocobozzz/PeerTube /PeerTube \
   && cd PeerTube \
   && npm install npm --global \

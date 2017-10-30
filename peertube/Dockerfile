@@ -12,7 +12,8 @@ ENV UID=991 GID=991 \
     SIGNUP_ENABLE=false \
     TRANSCODING_ENABLE=false \
     TRANSCODING_THREADS=2 \
-    BODY_SIZE=100M
+    BODY_SIZE=100M \
+	DEBIAN_FRONTEND=noninteractive
 
 
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \

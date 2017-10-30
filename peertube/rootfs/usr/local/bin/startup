@@ -1,10 +1,9 @@
 #!/bin/sh
 
-addgroup -g ${GID} peertube && adduser -s /bin/sh -G peertube -u ${UID} -D peertube
+addgroup --gid ${GID} peertube && adduser --shell /bin/sh --group peertube -uid ${UID} peertube
 
 
 cd /PeerTube
-addgroup -g ${GID} peertube && adduser -s /bin/sh -G peertube -u ${UID} -D peertube
 
 sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<hostname>|'${HOSTNAME}'|' \

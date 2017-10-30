@@ -18,7 +18,6 @@ ENV UID=991 GID=991 \
 
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
 	&& apt-get update \
-	&& apt-get upgrade -y --no-install-recommends  \
 	&& apt-get -y --no-install-recommends  install ffmpeg openssl curl git build-essential nginx \
 	&& apt-get clean \
 	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \

@@ -8,7 +8,7 @@ RUN BUILD_DEPS=" \
 	wget \
 	bcrypt \
 	build-essential" \
-  && sudo curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+  && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
   && apt-get update \
   && apt-get install -y -q --no-install-recommends ffmpeg openssl gnupg nodejs ${BUILD_DEPS} \
   && git clone -b master https://github.com/Chocobozzz/PeerTube /PeerTube \

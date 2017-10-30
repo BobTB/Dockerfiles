@@ -1,27 +1,48 @@
-FROM debian:stretch-slim
-ARG DEBIAN_FRONTEND=noninteractive
-RUN BUILD_DEPS=" \
-	git \
-	curl \
-	apt-transport-https \
-	ca-certificates \
-	wget \
-	bcrypt \
-	build-essential" \
-  && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-  && apt-get update \
-  && apt-get install -y -q --no-install-recommends ffmpeg openssl gnupg nodejs nginx ${BUILD_DEPS} \
-  && curl -L --insecure https://www.npmjs.org/install.sh | bash \
-  && git clone -b master https://github.com/Chocobozzz/PeerTube /PeerTube \
-  && cd PeerTube \
-  && npm install npm --global \
-  && yarn install \
-  && npm run build \
-  && cp config/production.yaml.example config/production.yaml \
-  && apt-get purge -y ${BUILD_DEPS} \
-  && apt-get autoremove -y \
-  && apt-get clean \
-  && rm -rf /PeerTube/.git \
-  && rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old \
-  && rm -rf /usr/share/man/?? \
-  && rm -rf /usr/share/man/??_*
+FROM debian:jessie-slim
+
+ENV UID=991 GID=991 \
+    HTTPS=false \
+    HOSTNAME=peertube.localhost \
+    PORT=80 \
+    DATABASE_HOST=localhost \
+    DATABASE_PORT=5432 \
+    DATABASE_USERNAME=peertube \
+    DATABASE_PASSWORD=peertube \
+    ADMIN_EMAIL=admin@domain.local \
+    SIGNUP_ENABLE=false \
+    TRANSCODING_ENABLE=false \
+    TRANSCODING_THREADS=2 \
+    BODY_SIZE=100M
+
+
+RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
+    && apt-get update \
+	&& apt-get -y upgrade \
+	&& apt-get -y install ffmpeg openssl curl git build-essential nginx \
+	&& apt-get clean \
+	&& curl -sL https://deb.nodesource.com/setup_6.x | sudo bash - \
+	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+	&& apt-get update \
+	&& apt-get -y install -y nodejs yarn \
+	&& git clone https://github.com/Chocobozzz/PeerTube /PeerTube \
+	&& npm install \
+	&& npm run build \
+	&& apt-get purge -y  build-essential \
+    && apt-get autoremove -y \
+	&& apt-get clean \
+	&& rm -rf /PeerTube/.git \
+	&& rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old \
+	&& rm -rf /usr/share/man/?? \
+	&& rm -rf /usr/share/man/??_*
+
+
+EXPOSE 8080
+
+COPY rootfs /
+
+RUN chmod +x /usr/local/bin/startup
+
+WORKDIR /PeerTube/
+VOLUME ["/PeerTube/certs", "/PeerTube/videos", "/PeerTube/logs", "/PeerTube/previews", "/PeerTube/thumbnails", "/PeerTube/torrents"]
+ENTRYPOINT ["/usr/local/bin/startup"]

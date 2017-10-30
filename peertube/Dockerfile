@@ -32,7 +32,6 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	&& yarn install \
 	&& npm run build \
 	&& apt-get purge -y  build-essential \
-	&& apt-get purge -y --force-yes $(dpkg-query -Wf '${Package;-40}${Priority}\n' | awk '$2 ~ /optional|extra/ { print $1 }') \
 	&& apt-get autoremove -y \
 	&& apt-get clean \
 	&& rm -rf /PeerTube/.git \

@@ -16,7 +16,7 @@ ENV UID=991 GID=991 \
 
 
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
-    && apt-get update \
+	&& apt-get update \
 	&& apt-get -y upgrade \
 	&& apt-get -y install ffmpeg openssl curl git build-essential nginx \
 	&& apt-get clean \
@@ -26,11 +26,13 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	&& apt-get update \
 	&& apt-get -y install -y nodejs yarn \
 	&& git clone https://github.com/Chocobozzz/PeerTube /PeerTube \
+	&& cd /PeerTube \
 	&& npm install \
+	&& yarn install \
 	&& npm run build \
 	&& apt-get purge -y  build-essential \
 	&& apt-get purge -y $(dpkg-query -Wf '${Package;-40}${Priority}\n' | awk '$2 ~ /optional|extra/ { print $1 }') \
-    && apt-get autoremove -y \
+	&& apt-get autoremove -y \
 	&& apt-get clean \
 	&& rm -rf /PeerTube/.git \
 	&& rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old \

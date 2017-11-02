@@ -19,4 +19,4 @@ RUN apk -U add wget zip \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
 
 COPY rootfs /
-VOLUME /shaarli/data
+VOLUME /shaarli/data /plugins

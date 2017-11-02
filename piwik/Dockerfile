@@ -50,4 +50,4 @@ VOLUME /config
 
 EXPOSE 8888
 
-CMD ["run.sh"]
+ENTRYPOINT ["/usr/local/bin/startup"]

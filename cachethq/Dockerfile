@@ -40,7 +40,7 @@ ENV UID=991 GID=991 \
 
 
 RUN apk -U add git curl \
-    && git clone --branch v2.3.13 https://github.com/CachetHQ/Cachet.git /cachetHQ \
+    && git clone --branch v2.3.13 https://github.com/CachetHQ/Cachet.git /cachetHQ 
 COPY rootfs /
 WORKDIR cachetHQ
 RUN chmod +x /usr/local/bin/startup \

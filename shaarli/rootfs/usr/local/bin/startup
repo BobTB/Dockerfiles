@@ -6,8 +6,11 @@ sed -i -e 's/<URL>/'$URL'/g' /nginx/sites-enabled/shaarli.conf
 
 
 mkdir -p /nginx /php
-
-cp -R /plugins /shaarli/
+if [ `find  /plugins -type f | wc -l` -eq 0 ] ; then
+  cp -R /shaarli/plugins/ /plugins
+else
+  cp -R /plugins /shaarli/
+fi
 chown -R web:web /nginx /php /shaarli/data /etc/s6.d
 chmod +x /etc/s6.d/*/run /etc/s6.d/.s6-svscan/finish
 

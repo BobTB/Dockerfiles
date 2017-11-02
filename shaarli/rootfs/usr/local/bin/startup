@@ -4,8 +4,10 @@ addgroup -g ${GID} web && adduser -H -s /bin/sh -D -G web -u ${UID} web
 
 sed -i -e 's/<URL>/'$URL'/g' /nginx/sites-enabled/shaarli.conf
 
+
 mkdir -p /nginx /php
 
+cp -R /plugins /shaarli/
 chown -R web:web /nginx /php /shaarli/data /etc/s6.d
 chmod +x /etc/s6.d/*/run /etc/s6.d/.s6-svscan/finish
 

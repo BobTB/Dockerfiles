@@ -31,6 +31,7 @@ RUN apk -U upgrade \
 
 COPY docker /docker
 
+EXPOSE 3000
 ENTRYPOINT ["/docker/entrypoint"]
 CMD ["start"]
 

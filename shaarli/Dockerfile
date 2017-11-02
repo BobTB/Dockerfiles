@@ -13,7 +13,7 @@ RUN apk -U add wget zip \
     && unzip v$SHAARLI_VERSION.zip \
     && mv Shaarli-Material-$SHAARLI_VERSION/material/* /shaarli/tpl \
     && cd /shaarli \
-    && composer update \
+    && composer install \
     && chmod +w cache pagecache data tmp \
     && apk del wget zip \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/*

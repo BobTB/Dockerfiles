@@ -1,6 +1,6 @@
 FROM xataz/nginx-php
 
-ARG SHAARLI_VERSION=0.8.3
+ARG SHAARLI_VERSION=0.9.2
 ENV URL=shaarli.localdomain.tld
 
 RUN apk -U add wget zip \

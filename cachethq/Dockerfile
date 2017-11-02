@@ -12,5 +12,5 @@ RUN apk -U add git curl \
  	&& apk del git curl \
     && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /cachetHQ/.git
 
-
+WORKDIR cachetHQ
 COPY rootfs /

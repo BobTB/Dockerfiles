@@ -9,7 +9,7 @@ ENV UID=991 GID=991 \
     DB_DRIVER=pgsql \
     DB_HOST=postgres \
     DB_DATABASE=cachet \
-    DB_PREFIX=cht_
+    DB_PREFIX=cht_ \
     DB_USERNAME=postgres \
     DB_PASSWORD=postgres \
 	DB_PORT=5432 \

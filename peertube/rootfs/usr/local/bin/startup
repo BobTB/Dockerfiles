@@ -4,16 +4,16 @@
 groupadd -g ${GID} peertube && useradd -u ${UID} -M -g ${GID} peertube
 
 sed -i -e 's|<https>|'${HTTPS}'|' \
-        -e 's|<hostname>|'${HOSTNAME}'|' \
-        -e 's|<port>|'${PORT}'|' \
-        -e 's|<database_host>|'${DATABASE_HOST}'|' \
-        -e 's|<database_port>|'${DATABASE_PORT}'|' \
-        -e 's|<database_username>|'${DATABASE_USERNAME}'|' \
-        -e 's|<database_password>|'${DATABASE_PASSWORD}'|' \
-        -e 's|<admin_email>|'${ADMIN_EMAIL}'|' \
-        -e 's|<signup_enabled>|'${SIGNUP_ENABLE}'|' \
-        -e 's|<transcoding_enable>|'${TRANSCODING_ENABLE}'|' \
-        -e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' \
+		-e 's|<hostname>|'${HOSTNAME}'|' \
+		-e 's|<port>|'${PORT}'|' \
+		-e 's|<database_host>|'${DATABASE_HOST}'|' \
+		-e 's|<database_port>|'${DATABASE_PORT}'|' \
+		-e 's|<database_username>|'${DATABASE_USERNAME}'|' \
+		-e 's|<database_password>|'${DATABASE_PASSWORD}'|' \
+		-e 's|<admin_email>|'${ADMIN_EMAIL}'|' \
+		-e 's|<signup_enabled>|'${SIGNUP_ENABLE}'|' \
+		-e 's|<transcoding_enable>|'${TRANSCODING_ENABLE}'|' \
+		-e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' \
   		-e 's|<cache_size>|'${CACHE_SIZE}'|' \
   		-e 's|<signup_limit>|'${SIGNUP_LIMIT}'|' \
   		-e 's|<resolution_280>|'${RESOLUTION_280}'|' \

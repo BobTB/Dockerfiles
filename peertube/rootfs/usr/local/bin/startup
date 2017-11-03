@@ -13,7 +13,14 @@ sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<admin_email>|'${ADMIN_EMAIL}'|' \
         -e 's|<signup_enabled>|'${SIGNUP_ENABLE}'|' \
         -e 's|<transcoding_enable>|'${TRANSCODING_ENABLE}'|' \
-        -e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' /PeerTube/config/production.yaml
+        -e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' \
+  		-e 's|<cache_size>|'${CACHE_SIZE}'|' \
+  		-e 's|<signup_limit>|'${SIGNUP_LIMIT}'|' \
+  		-e 's|<resolution_280>|'${RESOLUTION_280}'|' \
+  		-e 's|<resolution_360>|'${RESOLUTION_360}'|' \
+  		-e 's|<resolution_480>|'${RESOLUTION_480}'|' \
+  		-e 's|<resolution_720>|'${RESOLUTION_720}'|' \
+  		-e 's|<resolution_1080>|'${RESOLUTION_1080}'|' /PeerTube/config/production.yaml
 
 sed -i -e 's|<body_size>|'${BODY_SIZE}'|' /etc/nginx/sites-enabled/peertube.conf
 

@@ -51,6 +51,10 @@ else
     for directory in * ; do
        if [ -f "$directory/Dockerfile" ]; then
 	       f_build_and_push $directory $FORCE_BUILD
+       else
+           if [ -f "$directory/builder.sh" ]; then
+               sh $directory/builder.sh
+           fi
        fi
     done
     git push --mirror git@github.com:Dryusdan/Dockerfiles.git

@@ -3,8 +3,6 @@
 #addgroup --gid ${GID} peertube && adduser --disabled-password --shell /bin/sh --gid ${GID} --uid ${UID} --gecos "" peertube
 groupadd -g ${GID} peertube && useradd -u ${UID} -M -g ${GID} peertube
 
-cd /PeerTube
-
 sed -i -e 's|<https>|'${HTTPS}'|' \
         -e 's|<hostname>|'${HOSTNAME}'|' \
         -e 's|<port>|'${PORT}'|' \
@@ -21,6 +19,9 @@ sed -i -e 's|<body_size>|'${BODY_SIZE}'|' /etc/nginx/sites-enabled/peertube.conf
 
 chown -R $UID:$GID ./
 
+ pwd
+ ls -la
+  
 #npm start
 
 if [ $# -eq 0 ]; then

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-addgroup --gid ${GID} peertube && adduser --shell /bin/sh --group peertube -uid ${UID} peertube
-
+#addgroup --gid ${GID} peertube && adduser --disabled-password --shell /bin/sh --gid ${GID} --uid ${UID} --gecos "" peertube
+groupadd -g ${GID} peertube && useradd -u ${UID} -M -g ${GID} peertube
 
 cd /PeerTube
 

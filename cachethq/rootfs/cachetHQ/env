@@ -33,7 +33,7 @@ MAIL_ADDRESS=netdata@dryusdan.fr
 MAIL_NAME="Status des services DryCat"
 MAIL_ENCRYPTION=none
 
-REDIS_HOST=172.null
+REDIS_HOST=null
 REDIS_DATABASE=null
 REDIS_PORT=null
 REDIS_PASSWORD=null

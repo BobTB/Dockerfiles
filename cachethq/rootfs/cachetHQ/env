@@ -1,14 +1,14 @@
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://status.drycat.fr
-APP_KEY=base64:aLy0Io0sonoPKVJvrvxkgbn32+iZCGXsLxtQG3E9c3A=
+APP_KEY=
 APP_LOG=errorlog
 
 DB_DRIVER=mysql
-DB_HOST=172.20.1.150
+DB_HOST=localhost
 DB_DATABASE=cachet
 DB_USERNAME=cachet
-DB_PASSWORD=V3Sz9i42c5tKH6cTrtF7
+DB_PASSWORD=
 DB_PORT=3306
 DB_PREFIX=cht_
 
@@ -25,11 +25,11 @@ CACHET_BEACON=false
 CACHET_AUTO_TWITTER=false
 
 MAIL_DRIVER=smtp
-MAIL_HOST=mail.dryusdan.fr
+MAIL_HOST=mail.smtp.fr
 MAIL_PORT=465
-MAIL_USERNAME=netdata@dryusdan.fr
-MAIL_PASSWORD=Dryusdan/04
-MAIL_ADDRESS=netdata@dryusdan.fr
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ADDRESS=
 MAIL_NAME="Status des services DryCat"
 MAIL_ENCRYPTION=none
 

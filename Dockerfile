@@ -30,7 +30,7 @@ RUN apk -U upgrade \
   && rm -rf /tmp/*  /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /standardnotes/.git 
 
 COPY docker /docker
-RUN chmod +x /docker/entrypoint \
+RUN chmod +x /docker/entrypoint
 
 EXPOSE 3000
 ENTRYPOINT ["/docker/entrypoint"]

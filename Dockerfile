@@ -32,7 +32,7 @@ RUN apk -U upgrade \
 COPY docker /docker
 RUN chmod +x /docker/entrypoint
 
-EXPOSE 3000
+EXPOSE 80
 ENTRYPOINT ["/docker/entrypoint"]
 CMD ["start"]
 

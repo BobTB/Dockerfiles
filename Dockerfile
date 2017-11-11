@@ -27,6 +27,7 @@ RUN apk -U upgrade \
   && bundle exec rake bower:install \
   && grunt \
   && apk del build-dependencies \
+  && chmod +x /docker/entrypoint \
   && rm -rf /tmp/*  /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /standardnotes/.git 
 
 COPY docker /docker

@@ -5,6 +5,7 @@ case "$CMD" in
   'start' )
     echo `pwd`
     rm -f /data/src/tmp/pids/server.pid
+    rm -f /standardnotes/tmp/pids/server.pid
     cd /standardnotes/
     bundle exec rails s -b 0.0.0.0
     ;;
